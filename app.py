@@ -3,7 +3,10 @@
 Run:  python -m streamlit run app.py
 """
 import hashlib
+import json
 import sys
+import time
+import uuid
 from pathlib import Path
 
 import streamlit as st
@@ -15,7 +18,7 @@ from retriever import Retriever  # noqa: E402
 import speech  # noqa: E402
 
 st.set_page_config(page_title="FCDT Postgraduate Assistant", page_icon="🎓",
-                   layout="centered", initial_sidebar_state="collapsed")
+                   layout="centered", initial_sidebar_state="auto")  # auto = closed on phones
 
 STATUS = {  # text labels, not colour alone
     "answer": "✅ Answer",
@@ -28,6 +31,21 @@ STATUS = {  # text labels, not colour alone
 }
 PROG_KEYS = list(PROGRAMMES) + ["ANY"]
 PROG_LABEL = {**PROGRAMMES, "ANY": "Any programme (I'll ask if needed)"}
+HISTORY_FILE = Path(__file__).parent / ".chat_history.json"   # local only, ignored by git
+
+
+def load_chats() -> dict:
+    try:
+        return json.loads(HISTORY_FILE.read_text(encoding="utf-8"))
+    except Exception:  # noqa: BLE001 – missing or corrupt file -> start fresh
+        return {}
+
+
+def save_chats():
+    try:
+        HISTORY_FILE.write_text(json.dumps(ss.chats, ensure_ascii=False), encoding="utf-8")
+    except Exception as e:  # noqa: BLE001
+        print(f"[app] could not save chat history: {e!r}")
 
 
 @st.cache_resource
@@ -44,7 +62,34 @@ except Exception as e:  # noqa: BLE001
     st.stop()
 
 ss = st.session_state
-ss.setdefault("history", [])
+if "chats" not in ss:
+    ss.chats = load_chats()          # {id: {"title", "updated", "messages": [...]}}
+
+
+def new_chat():
+    cid = uuid.uuid4().hex[:8]
+    ss.chats[cid] = {"title": "New chat", "updated": time.time(), "messages": []}
+    ss.current = cid
+
+
+def open_chat(cid):
+    ss.current = cid
+
+
+def delete_chat(cid):
+    ss.chats.pop(cid, None)
+    save_chats()
+    if ss.get("current") == cid:
+        ss.current = None
+
+
+if not ss.get("current") or ss.current not in ss.chats:
+    empty = [c for c, v in ss.chats.items() if not v["messages"]]
+    if empty:
+        ss.current = empty[0]
+    else:
+        new_chat()
+ss.history = ss.chats[ss.current]["messages"]   # same list object -> edits go into the chat
 ss.setdefault("programme", DEFAULT_PROGRAMME)
 ss.setdefault("method", "hybrid")
 ss.setdefault("debug", False)
@@ -62,6 +107,11 @@ def submit(question: str, keep: bool = False):
     prog = None if ss.programme == "ANY" else ss.programme
     bot = Chatbot(retriever, method=ss.method)
     ans = bot.ask(question, programme=prog, keep_programme=keep)
+    chat = ss.chats[ss.current]
+    if not chat["messages"]:
+        chat["title"] = question[:40] + ("…" if len(question) > 40 else "")
+    chat["updated"] = time.time()
+    ss.history = chat["messages"]
     ss.history.append({"role": "user", "content": question})
     debug = None
     if ans.hits:
@@ -71,6 +121,7 @@ def submit(question: str, keep: bool = False):
                        "sources": ans.sources, "options": ans.options, "origin": question,
                        "programme": ss.programme, "intent": ans.intent, "debug": debug, "collapse": ans.collapse,
                        "text": ans.text})
+    save_chats()
 
 
 def on_option(opt: dict, origin: str):
@@ -96,13 +147,25 @@ def discard_voice():
     ss.voice_key += 1
 
 
-# ---------------- Sidebar: help + demo settings ---------------- #
+# ---------------- Sidebar: chat history + settings ---------------- #
 with st.sidebar:
-    st.subheader("About")
-    st.caption("Answers come only from the HELP University FCDT Postgraduate Handbook 2026/2027 "
-               f"({len(retriever.chunks)} indexed passages). Undergraduate programmes are not covered.")
-    if st.button("Clear chat", use_container_width=True):
-        ss.history = []
+    st.button("➕ New chat", use_container_width=True, on_click=new_chat)
+    st.subheader("Chat history")
+    chats = sorted(((c, v) for c, v in ss.chats.items() if v["messages"]),
+                   key=lambda kv: kv[1]["updated"], reverse=True)
+    if not chats:
+        st.caption("No previous chats yet.")
+    for cid, chat in chats:
+        c1, c2 = st.columns([0.8, 0.2], gap="small", vertical_alignment="center")
+        c1.button(("💬 " if cid != ss.current else "▶ ") + chat["title"], key=f"open-{cid}",
+                  use_container_width=True, type="primary" if cid == ss.current else "secondary",
+                  on_click=open_chat, args=(cid,))
+        c2.button("✕", key=f"del-{cid}", use_container_width=True, help="Delete this chat", on_click=delete_chat, args=(cid,))
+    st.divider()
+    with st.expander("About"):
+        st.caption("Answers are based on the HELP University FCDT Postgraduate Handbook 2026/2027 "
+                   f"({len(retriever.chunks)} indexed passages). Undergraduate programmes are not covered. "
+                   "Chat history is stored only on this computer.")
     with st.expander("Demo settings (for lecturer)"):
         ss.method = st.radio("Retrieval method", ["hybrid", "tfidf", "bm25"],
                              index=["hybrid", "tfidf", "bm25"].index(ss.method),
