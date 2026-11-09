@@ -1,0 +1,4 @@
+# Optional: offline speech-to-text. Downloads a ~75 MB Whisper model on first use.
+# If this fails to install (e.g. on a very new Python version), the app falls back
+# to SpeechRecognition from requirements.txt.
+faster-whisper>=1.0

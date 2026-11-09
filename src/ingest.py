@@ -16,12 +16,28 @@ from docx.table import Table
 from docx.text.paragraph import Paragraph
 
 sys.path.insert(0, str(Path(__file__).parent))
-from programmes import detect_in_heading, detect_mode  # noqa: E402
+from programmes import detect_in_heading, detect_load  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 RAW = ROOT / "data" / "raw" / "FCDT_Postgraduate_Handbook_2026-2027.docx"
 OUT = ROOT / "data" / "processed" / "chunks.json"
 MAX_WORDS = 160  # chunk size limit
+
+# Topic of each top-level handbook section (used to keep look-alike topics apart)
+TOPICS = {"1": "intro", "2": "intro", "3": "staff", "4": "mission", "5": "programme",
+          "6": "grading", "7": "admission", "8": "credit_transfer", "9": "policies",
+          "10": "administration", "11": "assessment", "12": "consultation", "13": "research",
+          "14": "subject_descriptions", "15": "structure_summary", "16": "awards",
+          "17": "research_areas", "18": "services"}
+
+
+def section_number(path: list[str]) -> str:
+    """Deepest numbered heading, e.g. '5.3' or '10.6'."""
+    for h in reversed(path):
+        m = re.match(r"(\d+(?:\.\d+)*)\.?\s", h)
+        if m:
+            return m.group(1)
+    return ""
 
 
 def clean(text: str) -> str:
@@ -130,7 +146,7 @@ def chunk_sections(sections):
         programmes = set()
         for h in sec["path"]:
             programmes |= detect_in_heading(h)
-        mode = detect_mode(sec["path"][-1])
+        mode = detect_load(sec["path"][-1])
         buf, words = [], 0
         for unit in sec["units"]:
             n = len(unit.split())
@@ -144,11 +160,18 @@ def chunk_sections(sections):
 
     out = []
     for i, (path_text, programmes, mode, units) in enumerate(chunks):
+        path = path_text.split(" > ")
+        sec_no = section_number(path)
+        topic = TOPICS.get(sec_no.split(".")[0], "front_matter")
+        if topic == "programme" and "Programme Structure" in path[-1]:
+            topic = "structure"
         out.append({
             "id": i,
             "section": path_text,
+            "section_no": sec_no,
+            "topic": topic,
             "programmes": sorted(programmes),
-            "mode": mode,
+            "load": mode,
             "units": units,                       # sentences / table rows
             "text": path_text + ". " + " ".join(units),  # what gets indexed
         })

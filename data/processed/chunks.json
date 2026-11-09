@@ -2,8 +2,10 @@
   {
     "id": 0,
     "section": "Front Matter",
+    "section_no": "",
+    "topic": "front_matter",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "HELP UNIVERSITY",
       "University of Achievers | Premier Digital Tech Institution",
@@ -30,8 +32,10 @@
   {
     "id": 1,
     "section": "Front Matter",
+    "section_no": "",
+    "topic": "front_matter",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "The conditions outlined in this Handbook refer to HELP University's own programmes unless otherwise mentioned. All programmes conducted by HELP University with its partners shall be subject to the terms and conditions stated by the partners. In the absence of certain terms and conditions by the partners, HELP University's terms and conditions shall prevail.",
       "Scope of this Handbook. This Handbook applies to all postgraduate candidates enrolled in the taught Master's and research doctoral programmes offered by the Faculty of Computing and Digital Technology. Candidates enrolled in the Faculty's Diploma and Bachelor programmes should refer to the separate Undergraduate Programmes Handbook.",
@@ -44,8 +48,10 @@
   {
     "id": 2,
     "section": "Front Matter",
+    "section_no": "",
+    "topic": "front_matter",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "HELP University reserves the right to revise academic and administrative policies and procedures, as well as the rates of course fees and charges, after Management has given approval for the revision."
     ],
@@ -54,8 +60,10 @@
   {
     "id": 3,
     "section": "1. Introduction",
+    "section_no": "1",
+    "topic": "intro",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "Welcome to the Faculty of Computing and Digital Technology of HELP University (HELP).",
       "This Postgraduate Student Handbook (the Handbook) outlines the academic and administrative structure for all postgraduate candidates of the faculty, stipulating HELP policy and procedure, subject to regulatory guidelines, for your programme progression and completion.",
@@ -66,8 +74,10 @@
   {
     "id": 4,
     "section": "1. Introduction",
+    "section_no": "1",
+    "topic": "intro",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "As a member of the HELP postgraduate community, you will be part of a larger cohort of candidates from diverse professional backgrounds and work experiences. The interaction with your fellow candidates, your supervisors and your academic facilitators is an integral part of your learning process. We trust that the faculty experience will provide you with the opportunity to develop beneficial scholarly, social and professional relationships.",
       "We hope you will find your association with HELP and the Faculty an enjoyable and rewarding one.",
@@ -79,8 +89,10 @@
   {
     "id": 5,
     "section": "2. Welcome Note from the Dean",
+    "section_no": "2",
+    "topic": "intro",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "The Faculty of Computing and Digital Technology (formerly the Faculty of Applied Sciences and Multimedia) was established in 1998 to prepare individuals for a rewarding career in computing. Information and digital technologies are now part of daily life in a way that could not be envisioned in 1998. In particular, digital technologies and business performance are inextricably interwoven. Digital technologies continue to develop with breathtaking and disruptive rapidity, with a continuing significant and urgent demand for qualified, competent and creative professionals.",
       "High organisational performance can be built on alliances and partnerships. HELP has forged robust links with institutions of higher learning in more than 30 countries, with many partners across Asia and Europe. The strength of HELP's own and collaborative programmes has also enabled HELP scholars to obtain PhD scholarships from the world's top universities in the UK and Australia."
@@ -90,8 +102,10 @@
   {
     "id": 6,
     "section": "2. Welcome Note from the Dean",
+    "section_no": "2",
+    "topic": "intro",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "The School of Information and Communication Technology within the Faculty works closely with its global partners and IT professional bodies to ensure that our curricula stay relevant to current needs and future challenges. Graduates require marketable skills to compete in the jobs market, and these skill sets change and evolve. We constantly review our pedagogy and delivery models to maintain the most relevant approach. At HELP, we do not compromise on quality, and our consistent efforts to enhance quality recently won us a Brand Laureate Award. Our graduates are ideally positioned to drive the IT industry towards higher levels of innovation and success."
     ],
@@ -100,8 +114,10 @@
   {
     "id": 7,
     "section": "2. Welcome Note from the Dean",
+    "section_no": "2",
+    "topic": "intro",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "Our mission is to produce self-directing graduates who can master new skills quickly and efficiently. Our primary aim is to produce graduates able to embrace rapid technological change and economic evolution, and at the same time prepare them to meet the demands and challenges of the Fourth Industrial Revolution. We endeavour to instil attitudes and values that will prepare them for a lifetime of continued learning and leadership. The faculty distinguishes itself by adopting and facilitating unique approaches to teaching and learning models.",
       "We welcome you to HELP University.",
@@ -113,8 +129,10 @@
   {
     "id": 8,
     "section": "3. Faculty of Computing and Digital Technology",
+    "section_no": "3",
+    "topic": "staff",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "The faculty is staffed by a group of highly qualified and committed academicians who are equipped with diverse exposure to a wide range of disciplines. Their combined experience in both the public and private sectors ensures that the quality of teaching and research supervision is maintained at a high standard.",
       "In line with HELP University's mission to be the leading and most successful education institution in fulfilling the education needs and aspirations of Malaysians, the Faculty plays an integral role in this respect. At postgraduate level, the faculty offers taught Master's programmes in data science, artificial intelligence and cybersecurity — delivered in both conventional and Open and Distance Learning (ODL) modes — together with research doctorates in computing and computer science."
@@ -124,8 +142,10 @@
   {
     "id": 9,
     "section": "3. Faculty of Computing and Digital Technology",
+    "section_no": "3",
+    "topic": "staff",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "In recognition of its efforts to produce industry-ready technology graduates, HELP University was conferred the Premier Digital Tech Institution (PDTI) award by the Malaysian Digital Economy Corporation (MDEC). The PDTI is endorsed by the Ministry of Education and awarded to selected institutions of higher learning that can deliver first-class courses in digital technology to produce highly employable graduates."
     ],
@@ -134,8 +154,10 @@
   {
     "id": 10,
     "section": "3. Faculty of Computing and Digital Technology > 3.1 Staff List for the Faculty",
+    "section_no": "3.1",
+    "topic": "staff",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "The faculty is supported academically by lecturers with industry and teaching experience, with expertise and strengths in the various areas of information and communication technology. Postgraduate candidates are supervised by academic staff holding doctoral qualifications and active research records."
     ],
@@ -144,8 +166,10 @@
   {
     "id": 11,
     "section": "3. Faculty of Computing and Digital Technology > 3.1 Staff List for the Faculty > Administrative (603-7849 3000)",
+    "section_no": "3.1",
+    "topic": "staff",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "Position and Name: Acting Dean of Faculty — Professor Dr Lee Chee Leong; Extension: Ext. 3272; Email: cheeleong.l@help.edu.my.",
       "Position and Name: Assistant Manager — Murni Zaitul Asywal Binti Mustafa; Extension: Ext. 3282; Email: murnizaitul.m@help.edu.my."
@@ -155,8 +179,10 @@
   {
     "id": 12,
     "section": "3. Faculty of Computing and Digital Technology > 3.1 Staff List for the Faculty > Academic — Professors (603-7849 3000)",
+    "section_no": "3.1",
+    "topic": "staff",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "Name and Qualifications: Professor Dr Lee Chee Leong — BSc (USM); MEng (NUS); PhD (Strathclyde); Extension: Ext. 3272; Email: cheeleong.l@help.edu.my.",
       "Name and Qualifications: Prof. Dr Sellappan A/L Palaniappan — BEcons (Statistics) (Hons); MSc in Computer Science (London); PhD in Interdisciplinary Information Science (Pittsburgh); Extension: Ext. 2178; Email: sellappan.p@help.edu.my.",
@@ -167,8 +193,10 @@
   {
     "id": 13,
     "section": "3. Faculty of Computing and Digital Technology > 3.1 Staff List for the Faculty > Academic — Senior Lecturers",
+    "section_no": "3.1",
+    "topic": "staff",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "Name and Qualifications: Ms Anitha Velayutham — BIT (Info Sys); MBA (Int'l Bus) (CSU); Extension: Ext. 3287; Email: anithav@help.edu.my.",
       "Name and Qualifications: Mr Kok Chye Hock — BSc (Maths and Comp Sc) Hons (UKM); MIT (CSU); Extension: Ext. 3275; Email: kokch@help.edu.my.",
@@ -183,8 +211,10 @@
   {
     "id": 14,
     "section": "3. Faculty of Computing and Digital Technology > 3.1 Staff List for the Faculty > Academic — Senior Lecturers",
+    "section_no": "3.1",
+    "topic": "staff",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "Name and Qualifications: Dr Saw Yi Jiau — BEng (Hons) (Electrical and Computer Systems) (Monash); PhD (Electrical and Computer Systems) (Monash); Extension: Ext. 3278; Email: yijiau.s@help.edu.my."
     ],
@@ -193,8 +223,10 @@
   {
     "id": 15,
     "section": "3. Faculty of Computing and Digital Technology > 3.1 Staff List for the Faculty > Academic — Lecturers",
+    "section_no": "3.1",
+    "topic": "staff",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "Name and Qualifications: Dr Siti Syakirah Binti Sazali — Bachelor of Science (Netcentric Computing) (UiTM); Master of Science (Computer Science) (UiTM); Doctor of Philosophy (Computer Science) (UiTM); Extension: Ext. 3288; Email: sitisyakirah.s@help.edu.my."
     ],
@@ -203,8 +235,10 @@
   {
     "id": 16,
     "section": "4. Mission, Vision and Values > 4.1 HELP University Mission",
+    "section_no": "4.1",
+    "topic": "mission",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "To help people succeed in life and to live a life of significance through education."
     ],
@@ -213,8 +247,10 @@
   {
     "id": 17,
     "section": "4. Mission, Vision and Values > 4.2 HELP University Vision",
+    "section_no": "4.2",
+    "topic": "mission",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "To be a university with a strong culture of quality and leadership that focuses on sound academic standards, continuous improvement, and the talent development of students and staff.",
       "To be a university that offers a learning experience that enhances career development, lifetime values and personal fulfilment.",
@@ -226,8 +262,10 @@
   {
     "id": 18,
     "section": "4. Mission, Vision and Values > 4.3 Corporate Values",
+    "section_no": "4.3",
+    "topic": "mission",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "The educational and corporate philosophy of HELP University is expressed through five corporate values: Pride of Achievement; Sharing Success; The Courage to Be; To be Compassionate; To be Significant."
     ],
@@ -236,8 +274,10 @@
   {
     "id": 19,
     "section": "4. Mission, Vision and Values > 4.4 University Educational Objectives (UEO)",
+    "section_no": "4.4",
+    "topic": "mission",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "HELP University's Educational Objectives translate the National Education Philosophy and the University's Vision and Mission into four graduate outcomes, mapped against the five clusters of learning outcomes of the Malaysian Qualifications Framework (MQF).",
       "UEO: UEO 1; University Educational Objective: To develop industry-ready and intellectually curious talent — graduates equipped with strong disciplinary knowledge who think critically and innovatively, are empowered to achieve career success, and contribute meaningfully to a dynamic and sustainable global environment.; MQF Clusters of Learning Outcomes: Knowledge and understanding; Cognitive skills; Numeracy skills; Digital skills; Practical skills.",
@@ -248,8 +288,10 @@
   {
     "id": 20,
     "section": "4. Mission, Vision and Values > 4.4 University Educational Objectives (UEO)",
+    "section_no": "4.4",
+    "topic": "mission",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "UEO: UEO 3; University Educational Objective: To cultivate ethical, socially responsible and sustainability-minded professionals who uphold professional standards and act with humane responsibility in their field of practice.; MQF Clusters of Learning Outcomes: Ethics and professionalism; Personal and entrepreneurial skills.",
       "UEO: UEO 4; University Educational Objective: To produce lifelong learners and knowledge creators who extend the body of knowledge through scholarship, research and continuous professional development.; MQF Clusters of Learning Outcomes: Knowledge and understanding; Cognitive skills; Leadership, autonomy and responsibility."
@@ -259,8 +301,10 @@
   {
     "id": 21,
     "section": "4. Mission, Vision and Values > 4.5 Teaching Philosophy and Pedagogy",
+    "section_no": "4.5",
+    "topic": "mission",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "Teaching Philosophy",
       "At HELP University, we focus on four capabilities that underpin all levels of study:",
@@ -277,8 +321,10 @@
   {
     "id": 22,
     "section": "4. Mission, Vision and Values > 4.5 Teaching Philosophy and Pedagogy",
+    "section_no": "4.5",
+    "topic": "mission",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "Our educational philosophy is holistic. On campus, there are sophisticated and unique programmes and services offered by qualified and experienced counsellors and psychologists for the pastoral care and personal development of students, to enable them to undertake their rigorous studies in the best psychological and emotional frames of mind for maximum achievement."
     ],
@@ -287,8 +333,10 @@
   {
     "id": 23,
     "section": "4. Mission, Vision and Values > 4.6 Quality Assurance",
+    "section_no": "4.6",
+    "topic": "mission",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "HELP's reputation as a university of achievers has earned it a worldwide standing. The high standards that it has painstakingly achieved are guaranteed, and where necessary enhanced, through a system of quality assurance by HELP's partner universities and statutory requirements. HELP was the first private institution of higher learning to obtain ISO 9001:2000 under AJA. Currently, the certification body for HELP's ISO 9001:2015 is NQA. In addition, since June 2020, HELP has been certified to ISO 45001:2018.",
       "Quality assurance in HELP is based on a system of internal and external peer scrutiny. The principles of quality assurance in HELP are based on a developmental approach and are viewed as a shared responsibility executed in a centralised and decentralised manner. Whilst the Vice-Chancellor and senior management staff play a major role in steering the University's quality assurance system, all members of the University community are entrusted to recognise and promulgate best quality practices."
@@ -298,8 +346,10 @@
   {
     "id": 24,
     "section": "4. Mission, Vision and Values > 4.7 Accreditation",
+    "section_no": "4.7",
+    "topic": "mission",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "HELP University's programmes are recognised and accredited by the Malaysian Ministry of Higher Education and the Malaysian Qualifications Agency (MQA), and are recognised by universities in Australia, New Zealand, the United Kingdom and the United States of America. Each postgraduate programme in this Handbook carries its MQA reference and accreditation code, which is stated in the relevant programme section."
     ],
@@ -308,8 +358,10 @@
   {
     "id": 25,
     "section": "5. Postgraduate Programmes",
+    "section_no": "5",
+    "topic": "programme",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "Technology is evolving at great speed. The Faculty offers current and relevant postgraduate programmes that prepare our graduates for advanced professional practice and for research. The faculty offers four taught Master's programmes and two research doctorates.",
       "Programme: Master of Data Science; Code: HUMDS; MQA Reference: R/0613/7/0045 (07/30) MQA/FA13820; Mode: Conventional.",
@@ -324,8 +376,10 @@
   {
     "id": 26,
     "section": "5. Postgraduate Programmes > 5.1 General Provisions for Postgraduate Candidature",
+    "section_no": "5.1",
+    "topic": "programme",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "Course Progression",
       "Candidates are expected to progress in accordance with the course timetable unless there is good reason not to do so. Candidates are advised that unless personal or professional commitments necessitate the deferment of one or more subjects, it is in their interest to complete the programme as scheduled. If one or more subject deferments need to be made, candidates are still expected to complete the programme within the maximum duration stated for their programme.",
@@ -336,8 +390,10 @@
   {
     "id": 27,
     "section": "5. Postgraduate Programmes > 5.1 General Provisions for Postgraduate Candidature",
+    "section_no": "5.1",
+    "topic": "programme",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "HELP keeps track of a candidate's progression and may ask for a written explanation if a candidate is found to be progressing unsatisfactorily, in terms of either results or non-enrolment of subjects for an unreasonable length of time (about six months or more). This is especially important for international candidates, because the Malaysian Immigration Department may not renew a student pass if the candidate has been inactive or has not progressed satisfactorily without reason.",
       "Attendance",
@@ -349,8 +405,10 @@
   {
     "id": 28,
     "section": "5. Postgraduate Programmes > 5.1 General Provisions for Postgraduate Candidature",
+    "section_no": "5.1",
+    "topic": "programme",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "Assessment of student learning is a key aspect of quality assurance and one of the most important measures used to demonstrate the achievement of learning outcomes. It is therefore crucial that appropriate assessment methods and mechanisms are in place. Qualifications are awarded based on the results of assessment. The methods of student assessment must be clear, consistent, effective, reliable and in line with current practices, and must clearly measure the achievement of the intended learning outcomes (COPPA, 2nd Edition, 2017).",
       "All candidates are required to pass BOTH the continuous and the final assessment components of every module, based on the passing marks defined for that module. A pass implies that the examiner is satisfied that the candidate has met all the learning outcomes of that particular module."
@@ -360,10 +418,12 @@
   {
     "id": 29,
     "section": "5. Postgraduate Programmes > 5.2 Master of Data Science (R/0613/7/0045) (07/30) (MQA/FA13820)",
+    "section_no": "5.2",
+    "topic": "programme",
     "programmes": [
       "MDS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "The programme aims to produce graduates who meet the growing demand for data science professionals capable of making decisions based on the availability of comprehensive data. It prepares graduates to apply analytics techniques for knowledge discovery and dissemination, to assist researchers or decision-makers in achieving organisational objectives.",
       "Objectives",
@@ -382,10 +442,12 @@
   {
     "id": 30,
     "section": "5. Postgraduate Programmes > 5.2 Master of Data Science (R/0613/7/0045) (07/30) (MQA/FA13820)",
+    "section_no": "5.2",
+    "topic": "programme",
     "programmes": [
       "MDS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "PEO: PEO 1; Programme Educational Objective: Knowledgeable and technically competent in the discipline of data science in line with industry requirements..",
       "PEO: PEO 2; Programme Educational Objective: Effective communicators who collaborate well with stakeholders and demonstrate good leadership qualities in an organisation..",
@@ -401,10 +463,12 @@
   {
     "id": 31,
     "section": "5. Postgraduate Programmes > 5.2 Master of Data Science (R/0613/7/0045) (07/30) (MQA/FA13820)",
+    "section_no": "5.2",
+    "topic": "programme",
     "programmes": [
       "MDS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "PLO: PLO 3; Programme Learning Outcome: Construct computing solutions and tools in terms of their usability, efficiency and effectiveness..",
       "PLO: PLO 4; Programme Learning Outcome: Demonstrate effective interaction within a group and with a diverse audience through project discussions and participation in discourses related to the field of study..",
@@ -419,10 +483,12 @@
   {
     "id": 32,
     "section": "5. Postgraduate Programmes > 5.2 Master of Data Science (R/0613/7/0045) (07/30) (MQA/FA13820)",
+    "section_no": "5.2",
+    "topic": "programme",
     "programmes": [
       "MDS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "PLO: PLO 10; Programme Learning Outcome: Exhibit capabilities of having an entrepreneurial mindset in the related field of study..",
       "PLO: PLO 11; Programme Learning Outcome: Uphold professional and ethical practices in conducting research and delivering services related to the field of study..",
@@ -436,10 +502,12 @@
   {
     "id": 33,
     "section": "5. Postgraduate Programmes > 5.2 Master of Data Science (R/0613/7/0045) (07/30) (MQA/FA13820) > Programme Structure — Master of Data Science (Full Time)",
+    "section_no": "5.2",
+    "topic": "structure",
     "programmes": [
       "MDS"
     ],
-    "mode": "full time",
+    "load": "full time",
     "units": [
       "Programme Code: HUMDS | Minimum Duration: 1 Year | Maximum Duration: 3 Years",
       "Semester: Semester 1 (11 weeks); Subject Code: MDS501; Subject Name: Programming for Data Science; Classification: Core; Credit Hours: 4.",
@@ -458,10 +526,12 @@
   {
     "id": 34,
     "section": "5. Postgraduate Programmes > 5.2 Master of Data Science (R/0613/7/0045) (07/30) (MQA/FA13820) > Programme Structure — Master of Data Science (Part Time)",
+    "section_no": "5.2",
+    "topic": "structure",
     "programmes": [
       "MDS"
     ],
-    "mode": "part time",
+    "load": "part time",
     "units": [
       "Programme Code: HUMDS | Minimum Duration: 2 Years | Maximum Duration: 5 Years",
       "Semester: Semester 1 (11 weeks); Subject Code: MDS501; Subject Name: Programming for Data Science; Classification: Core; Credit Hours: 4.",
@@ -481,10 +551,12 @@
   {
     "id": 35,
     "section": "5. Postgraduate Programmes > 5.2 Master of Data Science (R/0613/7/0045) (07/30) (MQA/FA13820) > Programme Structure — Master of Data Science (Part Time)",
+    "section_no": "5.2",
+    "topic": "structure",
     "programmes": [
       "MDS"
     ],
-    "mode": "part time",
+    "load": "part time",
     "units": [
       "Total credit hours for Semester 6: 20.",
       "TOTAL CREDIT HOURS (2 Years): 40."
@@ -494,10 +566,12 @@
   {
     "id": 36,
     "section": "5. Postgraduate Programmes > 5.3 Master in Artificial Intelligence — Conventional (N/0613/7/0071) (02/31) (MQA/PA18874)",
+    "section_no": "5.3",
+    "topic": "programme",
     "programmes": [
       "MAI_CONV"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "The Master in Artificial Intelligence (Conventional) aims to produce graduates equipped to meet the growing industry demand for AI professionals capable of designing, developing and deploying intelligent systems. The programme prepares graduates to apply machine learning, deep learning and natural language processing techniques to solve complex real-world problems, supporting researchers and decision-makers in achieving organisational objectives.",
       "Programme Learning Outcomes (PLO)",
@@ -512,10 +586,12 @@
   {
     "id": 37,
     "section": "5. Postgraduate Programmes > 5.3 Master in Artificial Intelligence — Conventional (N/0613/7/0071) (02/31) (MQA/PA18874)",
+    "section_no": "5.3",
+    "topic": "programme",
     "programmes": [
       "MAI_CONV"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "PLO: PLO 5; Programme Learning Outcome: Communicate effectively with stakeholders and a diverse audience in delivering solutions and professional services related to AI..",
       "PLO: PLO 6; Programme Learning Outcome: Utilise appropriate digital tools and technologies to solve computing and AI-based problems..",
@@ -530,10 +606,12 @@
   {
     "id": 38,
     "section": "5. Postgraduate Programmes > 5.3 Master in Artificial Intelligence — Conventional (N/0613/7/0071) (02/31) (MQA/PA18874) > Programme Structure — MAI Conventional (Full Time)",
+    "section_no": "5.3",
+    "topic": "structure",
     "programmes": [
       "MAI_CONV"
     ],
-    "mode": "full time",
+    "load": "full time",
     "units": [
       "Programme Code: HUMAI (Conventional) | Minimum Duration: 1 Year | Maximum Duration: 3 Years",
       "Semester: Semester 1 (15 weeks); Subject Code: MDS501; Subject Name: Applied Programming; Classification: Core; Credit Hours: 4.",
@@ -551,10 +629,12 @@
   {
     "id": 39,
     "section": "5. Postgraduate Programmes > 5.3 Master in Artificial Intelligence — Conventional (N/0613/7/0071) (02/31) (MQA/PA18874) > Programme Structure — MAI Conventional (Full Time)",
+    "section_no": "5.3",
+    "topic": "structure",
     "programmes": [
       "MAI_CONV"
     ],
-    "mode": "full time",
+    "load": "full time",
     "units": [
       "Semester: Semester 3 (13 weeks); Subject Code: MAI506; Subject Name: Project Report; Classification: Core; Credit Hours: 12.",
       "Semester: Semester 3 (13 weeks); Subject Code: MCS502; Subject Name: Network Security and Cryptography; Classification: Elective (choose 1); Credit Hours: 4.",
@@ -567,10 +647,12 @@
   {
     "id": 40,
     "section": "5. Postgraduate Programmes > 5.3 Master in Artificial Intelligence — Conventional (N/0613/7/0071) (02/31) (MQA/PA18874) > Programme Structure — MAI Conventional (Part Time)",
+    "section_no": "5.3",
+    "topic": "structure",
     "programmes": [
       "MAI_CONV"
     ],
-    "mode": "part time",
+    "load": "part time",
     "units": [
       "Programme Code: HUMAI (Conventional) | Minimum Duration: 2 Years | Maximum Duration: 5 Years",
       "Semester: Semester 1 (15 weeks); Subject Code: MDS501; Subject Name: Applied Programming; Classification: Core; Credit Hours: 4.",
@@ -589,10 +671,12 @@
   {
     "id": 41,
     "section": "5. Postgraduate Programmes > 5.3 Master in Artificial Intelligence — Conventional (N/0613/7/0071) (02/31) (MQA/PA18874) > Programme Structure — MAI Conventional (Part Time)",
+    "section_no": "5.3",
+    "topic": "structure",
     "programmes": [
       "MAI_CONV"
     ],
-    "mode": "part time",
+    "load": "part time",
     "units": [
       "Semester: Semester 5 (15 weeks); Subject Code: MAI502; Subject Name: Deep Learning for Computer Vision; Classification: Core; Credit Hours: 4.",
       "Semester: Semester 5 (15 weeks); Subject Code: MDS503; Subject Name: Applied Statistics; Classification: Elective (choose 1); Credit Hours: 4.",
@@ -607,10 +691,12 @@
   {
     "id": 42,
     "section": "5. Postgraduate Programmes > 5.4 Master in Artificial Intelligence — ODL (N-DL/0613/7/0057) (07/30) (MQA/PA18347)",
+    "section_no": "5.4",
+    "topic": "programme",
     "programmes": [
       "MAI_ODL"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "The Master in Artificial Intelligence (ODL) delivers the same disciplinary content as the conventional programme through an Open and Distance Learning mode. Learning is supported by structured self-instructional materials, asynchronous online resources and scheduled synchronous sessions, enabling working professionals to pursue advanced study in artificial intelligence without relocating or interrupting their careers. The programme shares the Programme Learning Outcomes of the Master in Artificial Intelligence set out in Section 5.3."
     ],
@@ -619,10 +705,12 @@
   {
     "id": 43,
     "section": "5. Postgraduate Programmes > 5.4 Master in Artificial Intelligence — ODL (N-DL/0613/7/0057) (07/30) (MQA/PA18347) > Programme Structure — MAI ODL (Full Time)",
+    "section_no": "5.4",
+    "topic": "structure",
     "programmes": [
       "MAI_ODL"
     ],
-    "mode": "full time",
+    "load": "full time",
     "units": [
       "Programme Code: HUMAI (ODL) | Minimum Duration: 1 Year | Maximum Duration: 3 Years",
       "No.: 1; Semester / Year Offered: SEM 1 / YEAR 1; Code: MDS501; Name of Course: Applied Programming; Classification: Core; Credit: 4.",
@@ -638,10 +726,12 @@
   {
     "id": 44,
     "section": "5. Postgraduate Programmes > 5.4 Master in Artificial Intelligence — ODL (N-DL/0613/7/0057) (07/30) (MQA/PA18347) > Programme Structure — MAI ODL (Full Time)",
+    "section_no": "5.4",
+    "topic": "structure",
     "programmes": [
       "MAI_ODL"
     ],
-    "mode": "full time",
+    "load": "full time",
     "units": [
       "No.: 7; Semester / Year Offered: SEM 2 / YEAR 1; Code: MAI503; Name of Course: Natural Language Processing; Classification: Elective (choose 1).",
       "Sub total: 12.",
@@ -656,10 +746,12 @@
   {
     "id": 45,
     "section": "5. Postgraduate Programmes > 5.4 Master in Artificial Intelligence — ODL (N-DL/0613/7/0057) (07/30) (MQA/PA18347) > Programme Structure — MAI ODL (Part Time)",
+    "section_no": "5.4",
+    "topic": "structure",
     "programmes": [
       "MAI_ODL"
     ],
-    "mode": "part time",
+    "load": "part time",
     "units": [
       "Programme Code: HUMAI (ODL) | Minimum Duration: 2 Years | Maximum Duration: 5 Years",
       "No.: 1; Semester / Year Offered: SEM 1 / YEAR 1; Code: MDS501; Name of Course: Applied Programming; Classification: Core; Credit: 4.",
@@ -677,10 +769,12 @@
   {
     "id": 46,
     "section": "5. Postgraduate Programmes > 5.4 Master in Artificial Intelligence — ODL (N-DL/0613/7/0057) (07/30) (MQA/PA18347) > Programme Structure — MAI ODL (Part Time)",
+    "section_no": "5.4",
+    "topic": "structure",
     "programmes": [
       "MAI_ODL"
     ],
-    "mode": "part time",
+    "load": "part time",
     "units": [
       "Sub total: 4.",
       "No.: 7; Semester / Year Offered: SEM 2 / YEAR 2; Code: MAI502; Name of Course: Deep Learning for Computer Vision; Classification: Core; Credit: 4.",
@@ -696,10 +790,12 @@
   {
     "id": 47,
     "section": "5. Postgraduate Programmes > 5.5 Master of Cybersecurity — ODL (N-DL/0613/7/0056) (07/30) (MQA/PA18340)",
+    "section_no": "5.5",
+    "topic": "programme",
     "programmes": [
       "MCS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "The programme aims to produce graduates who meet the growing demand for cybersecurity professionals capable of securing the confidentiality, integrity and availability of comprehensive data and information. It prepares graduates to apply analytics techniques for knowledge discovery and dissemination, to assist researchers or decision-makers in achieving organisational objectives.",
       "Objectives",
@@ -716,10 +812,12 @@
   {
     "id": 48,
     "section": "5. Postgraduate Programmes > 5.5 Master of Cybersecurity — ODL (N-DL/0613/7/0056) (07/30) (MQA/PA18340)",
+    "section_no": "5.5",
+    "topic": "programme",
     "programmes": [
       "MCS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "Leadership Preparation: Prepare candidates for leadership roles in cybersecurity by developing management and strategic planning capabilities.",
       "Lifelong Learning: Promote continuous learning and adaptation to rapidly evolving cybersecurity landscapes and technologies.",
@@ -735,10 +833,12 @@
   {
     "id": 49,
     "section": "5. Postgraduate Programmes > 5.5 Master of Cybersecurity — ODL (N-DL/0613/7/0056) (07/30) (MQA/PA18340)",
+    "section_no": "5.5",
+    "topic": "programme",
     "programmes": [
       "MCS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "PEO: PEO 4; Programme Educational Objective for Master of Cybersecurity: Lifelong learners, who are able to demonstrate entrepreneurial skills for successful personal and career advancement in the field of cybersecurity..",
       "Programme Learning Outcomes (PLO)",
@@ -754,10 +854,12 @@
   {
     "id": 50,
     "section": "5. Postgraduate Programmes > 5.5 Master of Cybersecurity — ODL (N-DL/0613/7/0056) (07/30) (MQA/PA18340)",
+    "section_no": "5.5",
+    "topic": "programme",
     "programmes": [
       "MCS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "PLO: PLO 7; Programme Learning Outcome: Apply mathematical and other quantitative skills to assess risk and vulnerability and evaluate cybersecurity countermeasures..",
       "PLO: PLO 8; Programme Learning Outcome: Function individually or in teams effectively, with the capability to be a leader..",
@@ -770,10 +872,12 @@
   {
     "id": 51,
     "section": "5. Postgraduate Programmes > 5.5 Master of Cybersecurity — ODL (N-DL/0613/7/0056) (07/30) (MQA/PA18340) > Programme Structure — Master of Cybersecurity ODL (Full Time)",
+    "section_no": "5.5",
+    "topic": "structure",
     "programmes": [
       "MCS"
     ],
-    "mode": "full time",
+    "load": "full time",
     "units": [
       "Programme Code: HUMCS | Minimum Duration: 1 Year | Maximum Duration: 3 Years",
       "No.: 1; Semester / Year Offered: SEM 1 / YEAR 1; Code: MCS501; Name of Course: Cybersecurity Fundamentals; Classification: Core; Credit: 4.",
@@ -789,10 +893,12 @@
   {
     "id": 52,
     "section": "5. Postgraduate Programmes > 5.5 Master of Cybersecurity — ODL (N-DL/0613/7/0056) (07/30) (MQA/PA18340) > Programme Structure — Master of Cybersecurity ODL (Full Time)",
+    "section_no": "5.5",
+    "topic": "structure",
     "programmes": [
       "MCS"
     ],
-    "mode": "full time",
+    "load": "full time",
     "units": [
       "No.: 7; Semester / Year Offered: SEM 2 / YEAR 1; Code: MCS504; Name of Course: Advanced Digital Forensics; Classification: Core; Credit: 4.",
       "Sub total: 12.",
@@ -807,10 +913,12 @@
   {
     "id": 53,
     "section": "5. Postgraduate Programmes > 5.5 Master of Cybersecurity — ODL (N-DL/0613/7/0056) (07/30) (MQA/PA18340) > Programme Structure — Master of Cybersecurity ODL (Part Time)",
+    "section_no": "5.5",
+    "topic": "structure",
     "programmes": [
       "MCS"
     ],
-    "mode": "part time",
+    "load": "part time",
     "units": [
       "Programme Code: HUMCS | Minimum Duration: 2 Years | Maximum Duration: 5 Years",
       "No.: 1; Semester / Year Offered: SEM 1 / YEAR 1; Code: MCS501; Name of Course: Cybersecurity Fundamentals; Classification: Core; Credit: 4.",
@@ -827,10 +935,12 @@
   {
     "id": 54,
     "section": "5. Postgraduate Programmes > 5.5 Master of Cybersecurity — ODL (N-DL/0613/7/0056) (07/30) (MQA/PA18340) > Programme Structure — Master of Cybersecurity ODL (Part Time)",
+    "section_no": "5.5",
+    "topic": "structure",
     "programmes": [
       "MCS"
     ],
-    "mode": "part time",
+    "load": "part time",
     "units": [
       "No.: 6; Semester / Year Offered: SEM 1 / YEAR 2; Code: MCS503; Name of Course: Ethical Hacking and Penetration Testing; Classification: Core; Credit: 4.",
       "Sub total: 4.",
@@ -847,10 +957,12 @@
   {
     "id": 55,
     "section": "5. Postgraduate Programmes > 5.6 Doctor of Philosophy in Computing (N-DL/0610/8/0007) (07/32) (MQA/PA18346)",
+    "section_no": "5.6",
+    "topic": "programme",
     "programmes": [
       "PHD_COMP"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "This broad-based doctorate by research addresses advanced research in the various areas within the umbrella of information and communication technology. The programme aims to produce graduates who meet the growing demand for ICT and computing professionals capable of leading research and development, and of creating solutions for a broad spectrum of ICT needs across a wide range of industries. It prepares graduates to innovate computing techniques to meet the current and future needs of researchers and decision-makers in achieving organisational objectives.",
       "Objectives",
@@ -867,10 +979,12 @@
   {
     "id": 56,
     "section": "5. Postgraduate Programmes > 5.6 Doctor of Philosophy in Computing (N-DL/0610/8/0007) (07/32) (MQA/PA18346)",
+    "section_no": "5.6",
+    "topic": "programme",
     "programmes": [
       "PHD_COMP"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "Demonstrate teamwork, leadership skills and decision-making skills.",
       "Programme Educational Objectives (PEO)",
@@ -887,10 +1001,12 @@
   {
     "id": 57,
     "section": "5. Postgraduate Programmes > 5.6 Doctor of Philosophy in Computing (N-DL/0610/8/0007) (07/32) (MQA/PA18346)",
+    "section_no": "5.6",
+    "topic": "programme",
     "programmes": [
       "PHD_COMP"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "PLO: PLO 1; Programme Learning Outcome: Integrate state-of-the-art knowledge through a systematic comprehension and in-depth understanding of the field of study..",
       "PLO: PLO 2; Programme Learning Outcome: Develop original research work that broadens the boundary of knowledge through an in-depth thesis that has been presented and defended according to HEP standards..",
@@ -904,10 +1020,12 @@
   {
     "id": 58,
     "section": "5. Postgraduate Programmes > 5.6 Doctor of Philosophy in Computing (N-DL/0610/8/0007) (07/32) (MQA/PA18346)",
+    "section_no": "5.6",
+    "topic": "programme",
     "programmes": [
       "PHD_COMP"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "PLO: PLO 7; Programme Learning Outcome: Apply appropriate numerical techniques to acquire, interpret and extend knowledge in computing..",
       "PLO: PLO 8; Programme Learning Outcome: Demonstrate leadership, teamwork, autonomy and responsibility in conducting research based on a computing theoretical framework..",
@@ -923,10 +1041,12 @@
   {
     "id": 59,
     "section": "5. Postgraduate Programmes > 5.6 Doctor of Philosophy in Computing (N-DL/0610/8/0007) (07/32) (MQA/PA18346) > Programme Structure — Doctor of Philosophy in Computing (Full Time)",
+    "section_no": "5.6",
+    "topic": "structure",
     "programmes": [
       "PHD_COMP"
     ],
-    "mode": "full time",
+    "load": "full time",
     "units": [
       "Programme Code: HUPHDC",
       "Minimum Duration: 3 Years",
@@ -940,10 +1060,12 @@
   {
     "id": 60,
     "section": "5. Postgraduate Programmes > 5.6 Doctor of Philosophy in Computing (N-DL/0610/8/0007) (07/32) (MQA/PA18346) > Programme Structure — Doctor of Philosophy in Computing (Part Time)",
+    "section_no": "5.6",
+    "topic": "structure",
     "programmes": [
       "PHD_COMP"
     ],
-    "mode": "part time",
+    "load": "part time",
     "units": [
       "Programme Code: HUPHDC",
       "Minimum Duration: 4 Years",
@@ -958,10 +1080,12 @@
   {
     "id": 61,
     "section": "5. Postgraduate Programmes > 5.7 Doctor of Philosophy in Computer Science (N/0613/8/XXXX) (07/31) (MQA/PA 19311)",
+    "section_no": "5.7",
+    "topic": "programme",
     "programmes": [
       "PHD_CS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "This broad-based doctorate by research addresses advanced research across the various areas within the field of computer science. The programme aims to produce graduates who meet the growing demand for computing and computer science professionals capable of leading research and development, and of creating solutions for a broad spectrum of ICT needs across a wide range of industries. It prepares graduates to innovate computing techniques to meet the current and future needs of researchers and decision-makers in achieving organisational objectives. The programme is delivered in the conventional (on-campus) mode, combining a mandatory research methodology module with supervised research leading to a thesis. The student's research area shall be aligned with the National Education Code (NEC) 0613 — Computer Science."
     ],
@@ -970,10 +1094,12 @@
   {
     "id": 62,
     "section": "5. Postgraduate Programmes > 5.7 Doctor of Philosophy in Computer Science (N/0613/8/XXXX) (07/31) (MQA/PA 19311)",
+    "section_no": "5.7",
+    "topic": "programme",
     "programmes": [
       "PHD_CS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "Accreditation. The programme was granted Provisional Accreditation by the Malaysian Qualifications Agency (MQA) under Section 39 of the Malaysian Qualifications Agency Act 2007 for a period of five years, effective 20 July 2026 (MQA/PA 19311). The application for Full Accreditation shall be submitted to MQA within the period stipulated by the Agency.",
       "Objectives",
@@ -993,10 +1119,12 @@
   {
     "id": 63,
     "section": "5. Postgraduate Programmes > 5.7 Doctor of Philosophy in Computer Science (N/0613/8/XXXX) (07/31) (MQA/PA 19311)",
+    "section_no": "5.7",
+    "topic": "programme",
     "programmes": [
       "PHD_CS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "PEO: PEO 1; Programme Educational Objective: Knowledgeable and technically competent to foster research and development in innovating solutions in line with industry and academia..",
       "PEO: PEO 2; Programme Educational Objective: Effective communicators who lead in their areas of expertise and are able to interact effectively with stakeholders..",
@@ -1011,10 +1139,12 @@
   {
     "id": 64,
     "section": "5. Postgraduate Programmes > 5.7 Doctor of Philosophy in Computer Science (N/0613/8/XXXX) (07/31) (MQA/PA 19311)",
+    "section_no": "5.7",
+    "topic": "programme",
     "programmes": [
       "PHD_CS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "PLO: PLO 2; Programme Learning Outcome: Develop original research work that broadens the boundary of knowledge through an in-depth thesis that has been presented and defended according to HEP standards..",
       "PLO: PLO 3; Programme Learning Outcome: Develop innovative computing solutions that stand the tests of applicability, efficiency and effectiveness..",
@@ -1028,10 +1158,12 @@
   {
     "id": 65,
     "section": "5. Postgraduate Programmes > 5.7 Doctor of Philosophy in Computer Science (N/0613/8/XXXX) (07/31) (MQA/PA 19311)",
+    "section_no": "5.7",
+    "topic": "programme",
     "programmes": [
       "PHD_CS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "PLO: PLO 8; Programme Learning Outcome: Demonstrate leadership, teamwork, autonomy and responsibility in conducting research based on a computing theoretical framework..",
       "PLO: PLO 9; Programme Learning Outcome: Exhibit capabilities to extend relevant knowledge through life-long learning..",
@@ -1046,10 +1178,12 @@
   {
     "id": 66,
     "section": "5. Postgraduate Programmes > 5.7 Doctor of Philosophy in Computer Science (N/0613/8/XXXX) (07/31) (MQA/PA 19311) > Programme Structure — Doctor of Philosophy in Computer Science (Full Time)",
+    "section_no": "5.7",
+    "topic": "structure",
     "programmes": [
       "PHD_CS"
     ],
-    "mode": "full time",
+    "load": "full time",
     "units": [
       "Programme Code: HUPHDCS",
       "Minimum Duration: 3 Years",
@@ -1063,10 +1197,12 @@
   {
     "id": 67,
     "section": "5. Postgraduate Programmes > 5.7 Doctor of Philosophy in Computer Science (N/0613/8/XXXX) (07/31) (MQA/PA 19311) > Programme Structure — Doctor of Philosophy in Computer Science (Part Time)",
+    "section_no": "5.7",
+    "topic": "structure",
     "programmes": [
       "PHD_CS"
     ],
-    "mode": "part time",
+    "load": "part time",
     "units": [
       "Programme Code: HUPHDCS",
       "Minimum Duration: 4 Years",
@@ -1081,8 +1217,10 @@
   {
     "id": 68,
     "section": "6. Grading Scheme > 6.1 Master's Programmes",
+    "section_no": "6.1",
+    "topic": "grading",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "The grading scheme in this section applies to all four taught master's programmes of the faculty:",
       "Master of Data Science",
@@ -1102,8 +1240,10 @@
   {
     "id": 69,
     "section": "6. Grading Scheme > 6.1 Master's Programmes",
+    "section_no": "6.1",
+    "topic": "grading",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "Mark Range: 0 – 49; Grade: F; Grade Point: 0.00 (not included in GPA calculation); Description: Fail; Remark: 0 – 49: Poor Failure (given a maximum of 2 RETAKE chances).",
       "Notes on Assessment and Progression",
@@ -1118,8 +1258,10 @@
   {
     "id": 70,
     "section": "6. Grading Scheme > 6.1 Master's Programmes",
+    "section_no": "6.1",
+    "topic": "grading",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "The final grade for a module comprises one or a combination of several assessment tasks.",
       "Graded academic tasks involve continuous assessment such as assignments, quizzes, tests and final project assessment.",
@@ -1133,11 +1275,13 @@
   {
     "id": 71,
     "section": "6. Grading Scheme > 6.2 Doctoral Programmes",
+    "section_no": "6.2",
+    "topic": "grading",
     "programmes": [
       "PHD_COMP",
       "PHD_CS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "This section applies to both research doctorates offered by the faculty — the Doctor of Philosophy in Computing and the Doctor of Philosophy in Computer Science. Each is a research-based degree, which consists of a mandatory Research Methodology module and the Thesis. Candidates must pass both components:",
       "The Research Methodology module consists of several assessments, and candidates need to achieve an overall pass mark for the module.",
@@ -1150,8 +1294,10 @@
   {
     "id": 72,
     "section": "7. Admission Information",
+    "section_no": "7",
+    "topic": "admission",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "The following minimum entry requirements are a general guideline. International applicants should contact the Faculty or the University to determine their eligibility."
     ],
@@ -1160,10 +1306,12 @@
   {
     "id": 73,
     "section": "7. Admission Information > 7.1 Master of Data Science",
+    "section_no": "7.1",
+    "topic": "admission",
     "programmes": [
       "MDS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "Admission to this programme is in fulfilment of any one of the following requirements:",
       "i. A Bachelor degree (Level 6, MQF) in Computing or related fields with a minimum CGPA of 2.75, as accepted by the HEP Senate; OR",
@@ -1176,10 +1324,12 @@
   {
     "id": 74,
     "section": "7. Admission Information > 7.1 Master of Data Science",
+    "section_no": "7.1",
+    "topic": "admission",
     "programmes": [
       "MDS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "v. Other qualifications equivalent to a Bachelor's degree (Level 6, MQF) in Computing or related fields recognised by the Government of Malaysia, which must fulfil the requirement in item (i) or (ii).",
       "For candidates without a Computing degree, prerequisite module(s) should be taken to adequately prepare them for their advanced study.",
@@ -1191,11 +1341,13 @@
   {
     "id": 75,
     "section": "7. Admission Information > 7.2 Master in Artificial Intelligence (Conventional) & Master of Artificial Intelligence (ODL)",
+    "section_no": "7.2",
+    "topic": "admission",
     "programmes": [
       "MAI_CONV",
       "MAI_ODL"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "Admission to this programme is in fulfilment of any one of the following requirements:",
       "i. A Bachelor's degree (Level 6, MQF) in Artificial Intelligence / Computing / Science, Technology and Engineering fields with a minimum CGPA of 2.50, as accepted by the HEP Senate; OR",
@@ -1207,11 +1359,13 @@
   {
     "id": 76,
     "section": "7. Admission Information > 7.2 Master in Artificial Intelligence (Conventional) & Master of Artificial Intelligence (ODL)",
+    "section_no": "7.2",
+    "topic": "admission",
     "programmes": [
       "MAI_CONV",
       "MAI_ODL"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "iv. A Bachelor's degree (Level 6, MQF) in non-Artificial Intelligence / Computing / Science, Technology and Engineering fields with a minimum CGPA of 2.50, accepted subject to a thorough rigorous assessment as determined by the HEP to identify the appropriate prerequisite courses; OR",
       "v. A Bachelor's degree (Level 6, MQF) in non-Artificial Intelligence / Computing / Science, Technology and Engineering fields with a minimum CGPA of 2.50, accepted subject to a thorough rigorous assessment as determined by the HEP to identify the appropriate prerequisite courses equivalent to the applicant's working experience in Artificial Intelligence or related fields; OR",
@@ -1222,11 +1376,13 @@
   {
     "id": 77,
     "section": "7. Admission Information > 7.2 Master in Artificial Intelligence (Conventional) & Master of Artificial Intelligence (ODL)",
+    "section_no": "7.2",
+    "topic": "admission",
     "programmes": [
       "MAI_CONV",
       "MAI_ODL"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "For candidates without a Computing degree, prerequisite module(s) should be taken to adequately prepare them for advanced study.",
       "English Competency Requirement (International Applicants)",
@@ -1237,10 +1393,12 @@
   {
     "id": 78,
     "section": "7. Admission Information > 7.3 Master of Cybersecurity (ODL)",
+    "section_no": "7.3",
+    "topic": "admission",
     "programmes": [
       "MCS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "Admission to these programmes is in fulfilment of any one of the following requirements:",
       "i. A Bachelor's degree (Level 6, MQF) in Computing or related fields with a minimum CGPA of 2.50, as accepted by the HEP Senate; OR",
@@ -1253,10 +1411,12 @@
   {
     "id": 79,
     "section": "7. Admission Information > 7.3 Master of Cybersecurity (ODL)",
+    "section_no": "7.3",
+    "topic": "admission",
     "programmes": [
       "MCS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "v. Other qualifications equivalent to a Bachelor's degree (Level 6, MQF) in Computing or related fields recognised by the Government of Malaysia, which must fulfil the requirement in item (i) or (ii); OR",
       "vi. Accreditation of Prior Experiential Learning for Access (APEL.A) entry route, through recognition of prior learning and experience.",
@@ -1269,10 +1429,12 @@
   {
     "id": 80,
     "section": "7. Admission Information > 7.3 Master of Cybersecurity (ODL)",
+    "section_no": "7.3",
+    "topic": "admission",
     "programmes": [
       "MCS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "International candidates must achieve a minimum of Band 4 in MUET or the equivalent of CEFR (Low B2). If a candidate does not meet this requirement, the HEP must offer English proficiency courses to ensure that the candidate's proficiency is sufficient to meet the needs of the programme.",
       "For candidates without a Computing degree, prerequisite module(s) in computing should be taken to adequately prepare them for their advanced study. These are: (i) Data Communications and Networking (MCS107); (ii) Operating Systems Fundamentals (MCS110); (iii) Reinforcement Mathematics, which may be offered as part of, or outside, the curriculum structure. If Reinforcement Mathematics is offered as part of the curriculum structure, it counts as an addition to the total number of credits required for graduation."
@@ -1282,10 +1444,12 @@
   {
     "id": 81,
     "section": "7. Admission Information > 7.4 Doctor of Philosophy in Computing",
+    "section_no": "7.4",
+    "topic": "admission",
     "programmes": [
       "PHD_COMP"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "Admission to this programme is in fulfilment of the following requirements:",
       "A Master's degree or equivalent; AND",
@@ -1300,10 +1464,12 @@
   {
     "id": 82,
     "section": "7. Admission Information > 7.5 Doctor of Philosophy in Computer Science",
+    "section_no": "7.5",
+    "topic": "admission",
     "programmes": [
       "PHD_CS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "Admission to this programme is in fulfilment of the following requirements:",
       "A Master's degree or equivalent; AND",
@@ -1320,10 +1486,12 @@
   {
     "id": 83,
     "section": "7. Admission Information > 7.5 Doctor of Philosophy in Computer Science",
+    "section_no": "7.5",
+    "topic": "admission",
     "programmes": [
       "PHD_CS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "The faculty shall ensure that the appointed Principal (Main) Supervisor holds qualifications and experience suitable for supervising the candidate's research area.",
       "Evidence of compliance with the specific conditions above shall be submitted to MQA during the Full Accreditation evaluation."
@@ -1333,8 +1501,10 @@
   {
     "id": 84,
     "section": "8. Credit Exemptions and Transfer of Credits",
+    "section_no": "8",
+    "topic": "credit_transfer",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "Transfer of credits may be granted based on subjects completed in equivalent courses conducted at educational institutions recognised by HELP University. The request may be made at the time of the course application, or within a reasonable time of course commencement. Credit transfers are normally considered and approved by the Faculty Academic Board, the Dean and/or the Head of School, based on the applicant's prior learning at postgraduate level that matches generally 80% or more of the curriculum of the related Faculty module.",
       "Credit transfer applicants shall be notified in writing of the approval of their request by way of a Credit Transfer Confirmation, a copy of which shall be placed in the candidate's file. The credit transfer shall be entered in HELP's Student Records System upon payment of the applicable fee. Credit transfers into Faculty programmes may be approved up to a maximum of 50% of the programme requirement.",
@@ -1345,8 +1515,10 @@
   {
     "id": 85,
     "section": "8. Credit Exemptions and Transfer of Credits",
+    "section_no": "8",
+    "topic": "credit_transfer",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "Applications for credit exemptions should be made at the same time as applications for admission to a programme. Supporting documents include:",
       "A certified copy of transcripts of academic qualifications and any appropriate supporting document, for example the grading system used to explain the transcript, and the course structure.",
@@ -1360,8 +1532,10 @@
   {
     "id": 86,
     "section": "9. Policies and Regulations",
+    "section_no": "9",
+    "topic": "policies",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "For further details, please refer to the University Handbook 2026 and to the General Policies and Procedures of HELP University."
     ],
@@ -1370,8 +1544,10 @@
   {
     "id": 87,
     "section": "9. Policies and Regulations > 9.1 Registration",
+    "section_no": "9.1",
+    "topic": "policies",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "Every candidate is required to complete an official registration every semester. Candidates who fail to complete the registration process are not considered officially enrolled and will be denied the opportunity of complete modules at the end of the semester. Candidates shall confirm their subject enrolment by Week 0 of each semester and shall be enrolled for the subject if payment has already been made. If the fee is not paid, no enrolment shall be made.",
       "Registration Procedure",
@@ -1383,8 +1559,10 @@
   {
     "id": 88,
     "section": "9. Policies and Regulations > 9.1 Registration",
+    "section_no": "9.1",
+    "topic": "policies",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "Registration is incomplete until all fees payable have been settled at the Bursary Office in accordance with HELP University payment policies and regulations. All candidates are required to comply with the payment deadline specified in the semester schedule.",
       "Alternatively, candidates may enrol in subjects online via newmypride.help.edu.my."
@@ -1394,8 +1572,10 @@
   {
     "id": 89,
     "section": "9. Policies and Regulations > 9.2 Cancellation of Subjects Offered",
+    "section_no": "9.2",
+    "topic": "policies",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "The faculty makes every reasonable effort to offer modules as indicated in the Subjects Availability List, which is posted in the Learning Management System (CN). However, the faculty reserves the right to make changes or to cancel subjects in the proposed schedule because of insufficient enrolment, or for any other reason deemed valid. Candidates are responsible for keeping themselves informed by viewing the LMS and the website periodically."
     ],
@@ -1404,8 +1584,10 @@
   {
     "id": 90,
     "section": "9. Policies and Regulations > 9.3 Responsibilities of Candidates",
+    "section_no": "9.3",
+    "topic": "policies",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "All Candidates",
       "As a postgraduate candidate of the faculty, you are responsible for:",
@@ -1423,8 +1605,10 @@
   {
     "id": 91,
     "section": "9. Policies and Regulations > 9.3 Responsibilities of Candidates",
+    "section_no": "9.3",
+    "topic": "policies",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "Be mindful of the faculty's commitment to equal opportunity and demonstrate tolerance and respect for all members of the University community.",
       "Respect the right of peers and staff members to express views and opinions.",
@@ -1436,8 +1620,10 @@
   {
     "id": 92,
     "section": "10. Programme Administration",
+    "section_no": "10",
+    "topic": "administration",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "Modules are assigned a specified subject code and a certain number of credit hours."
     ],
@@ -1446,8 +1632,10 @@
   {
     "id": 93,
     "section": "10. Programme Administration > 10.1 Subject Numbering System",
+    "section_no": "10.1",
+    "topic": "administration",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "Subjects are numbered to indicate the level of advancement. Postgraduate modules are numbered as follows:",
       "Numbering: 500-Level; Level of Study: Master's level (MQF Level 7).",
@@ -1459,8 +1647,10 @@
   {
     "id": 94,
     "section": "10. Programme Administration > 10.2 Prerequisites",
+    "section_no": "10.2",
+    "topic": "administration",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "Subject prerequisites are listed in this Handbook in the Subject Descriptions. These requirements are intended to ensure that candidates have a reasonable chance of completing a module without a low grade or a fail grade. A prerequisite is a module that must be taken and passed prior to registering for any of the modules that require it.",
       "Any candidate who has failed the first of a sequence of modules is not allowed to enrol in the subsequent module until the fail grade has been changed to a pass grade. Candidates may refer to the respective programme proforma for subject prerequisites.",
@@ -1471,8 +1661,10 @@
   {
     "id": 95,
     "section": "10. Programme Administration > 10.3 Adding or Dropping Subjects",
+    "section_no": "10.3",
+    "topic": "administration",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "a. Candidates are required to enrol during the official registration periods determined by HELP University, failing which they may not be allowed to attend any classes or to be assessed in any of the assessed items. Each candidate shall be given an invoice at the point of enrolment, and candidates are to pay their fees promptly.",
       "b. For full semester registration, subject enrolment must be made at the Registry or through myPride within the first and second week from the semester commencement date. For a half semester, enrolment must be made within the first week of the semester.",
@@ -1483,8 +1675,10 @@
   {
     "id": 96,
     "section": "10. Programme Administration > 10.3 Adding or Dropping Subjects",
+    "section_no": "10.3",
+    "topic": "administration",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "d. Candidates must ensure that they fulfil the subject prerequisites. For subjects that do not conform to the normal procedures, candidates must obtain approval from the faculty.",
       "e. Candidates who submit the enrolment form within the third or fourth week, or after the stipulated enrolment date, must obtain approval from the faculty, and the policy under FINANCIAL REQUIREMENTS — Item 7.3, late enrolment penalty fee, will apply (not applicable to short semesters).",
@@ -1495,8 +1689,10 @@
   {
     "id": 97,
     "section": "10. Programme Administration > 10.3 Adding or Dropping Subjects",
+    "section_no": "10.3",
+    "topic": "administration",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "g. The Registry will not enrol a candidate in the desired subjects if the prerequisites are not met; if the candidate has reached the maximum number of subjects enrolled for the semester; if the candidate has not entered the minimum number of subjects for the semester without approval from the faculty; or if the candidate has outstanding fees at the time of subject enrolment."
     ],
@@ -1505,8 +1701,10 @@
   {
     "id": 98,
     "section": "10. Programme Administration > 10.4 Change of Programme Status (Full Time or Part Time)",
+    "section_no": "10.4",
+    "topic": "administration",
     "programmes": [],
-    "mode": "part time",
+    "load": "part time",
     "units": [
       "(Applicable to the Master of Data Science only.)",
       "Candidates are advised to seek advice and/or counselling from the faculty before deciding to change their status from part time to full time, or vice versa.",
@@ -1518,8 +1716,10 @@
   {
     "id": 99,
     "section": "10. Programme Administration > 10.5 Withdrawal Procedure from Subjects",
+    "section_no": "10.5",
+    "topic": "administration",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "Candidates are required to write officially to the Registry for any request to withdraw from an enrolled subject.",
       "All requests for subject withdrawals are subject to the approval of Management.",
@@ -1530,8 +1730,10 @@
   {
     "id": 100,
     "section": "10. Programme Administration > 10.6 Withdrawal Procedure from HELP University",
+    "section_no": "10.6",
+    "topic": "administration",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "A candidate shall be deemed to be no longer enrolled in a programme at HELP University if the candidate has completed the requirements for that programme; if registration in the programme has been terminated; or if the candidate has been excluded on academic or disciplinary grounds.",
       "Any candidate who wishes to discontinue or withdraw from HELP University should inform the University immediately in writing. A withdrawal form, available at the Registry or the Faculty, must be completed and submitted to the faculty for processing.",
@@ -1543,8 +1745,10 @@
   {
     "id": 101,
     "section": "10. Programme Administration > 10.6 Withdrawal Procedure from HELP University",
+    "section_no": "10.6",
+    "topic": "administration",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "A candidate who withdraws from a programme more than two weeks after the commencement or date of enrolment will NOT be given any refund of fees paid, except the security deposit, which will be refunded in full provided there are no other outstanding fees.",
       "A candidate who has registered but does not attend class for one month from the date of commencement or enrolment shall be classified as having withdrawn unofficially, and all fees except the resource fee and the security deposit shall be forfeited.",
@@ -1555,8 +1759,10 @@
   {
     "id": 102,
     "section": "10. Programme Administration > 10.6 Withdrawal Procedure from HELP University",
+    "section_no": "10.6",
+    "topic": "administration",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "All money due will be refunded to the financial sponsor as indicated on the application form. Should the financial sponsor change during the study period, an official letter from the original financial sponsor must be submitted to the Registrar to indicate the change.",
       "If a cheque is to be written in a name other than that of the financial sponsor, an authorisation letter from the financial sponsor must be submitted together with the withdrawal form.",
@@ -1567,8 +1773,10 @@
   {
     "id": 103,
     "section": "11. Assessment and Evaluation",
+    "section_no": "11",
+    "topic": "assessment",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "The faculty follows the university-wide assessment method, under which all candidates are subject to the same regulations. The assessment of a module may be made up of examination and/or assignment components. Assignment components may include seminar presentations, time-constrained tests, projects, assignments or other forms of assessment. The number and weightage of assessment items may vary from module to module.",
       "It is the duty of the examiner of each module, at its commencement, to make available to candidates the format, timing and weightage of assessment for that module. It is the responsibility of each candidate to ensure that he or she is fully informed of the assessment applied to each module in which he or she is enrolled."
@@ -1578,10 +1786,12 @@
   {
     "id": 104,
     "section": "11. Assessment and Evaluation > 11.1 Master of Data Science",
+    "section_no": "11.1",
+    "topic": "assessment",
     "programmes": [
       "MDS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "Generally, the weightage of each assessment item is based on the following percentages:",
       "Component: Continuous Assessment(s); Weightage: 40 – 60%.",
@@ -1593,11 +1803,13 @@
   {
     "id": 105,
     "section": "11. Assessment and Evaluation > 11.2 Master in Artificial Intelligence (Conventional) & Master in Artificial Intelligence (ODL)",
+    "section_no": "11.2",
+    "topic": "assessment",
     "programmes": [
       "MAI_CONV",
       "MAI_ODL"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "Generally, the weightage of each assessment item is based on the following percentages:",
       "Component: Continuous Assessment(s); Weightage: 40 – 60%.",
@@ -1610,10 +1822,12 @@
   {
     "id": 106,
     "section": "11. Assessment and Evaluation > 11.3 Master of Cybersecurity (ODL)",
+    "section_no": "11.3",
+    "topic": "assessment",
     "programmes": [
       "MCS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "Generally, the weightage of each assessment item is based on the following percentages:",
       "Component: Continuous Assessment (CA); Weightage: 40 – 60%.",
@@ -1625,10 +1839,12 @@
   {
     "id": 107,
     "section": "11. Assessment and Evaluation > 11.4 Doctoral Programmes (PhD in Computing and PhD in Computer Science)",
+    "section_no": "11.4",
+    "topic": "assessment",
     "programmes": [
       "PHD_CS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "For both research doctorates, the assessment of modules follows the assessment criteria of the respective module. The award of the Thesis is dependent on the final decision of the examination panel. Research progress is monitored through periodic progress assessments as set out in Section 6.2, and the final award is determined through the thesis examination and viva voce conducted by a panel of internal and external examiners."
     ],
@@ -1637,8 +1853,10 @@
   {
     "id": 108,
     "section": "11. Assessment and Evaluation > 11.5 Variation of Assessment",
+    "section_no": "11.5",
+    "topic": "assessment",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "An examiner may, in consultation with the Head of School, approve a variation in the assessment instrument to be used for a candidate in the following circumstances:",
       "Illness of the candidate, which must be supported by documentary evidence; or",
@@ -1650,8 +1868,10 @@
   {
     "id": 109,
     "section": "11. Assessment and Evaluation > 11.6 Academic Integrity",
+    "section_no": "11.6",
+    "topic": "assessment",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "Postgraduate candidates are expected to observe the highest standards of academic integrity. All work submitted for assessment must be the candidate's own, and all sources consulted must be properly acknowledged using the referencing convention specified in the module outline. Plagiarism, collusion, fabrication of data, and the undisclosed use of generative artificial intelligence tools in contravention of the stated module policy are treated as academic misconduct and are dealt with under the University's disciplinary procedures.",
       "Where a module outline permits the use of generative AI tools, the permitted scope of use and the required form of declaration will be stated in that outline. Candidates remain fully accountable for the accuracy, originality and integrity of everything they submit."
@@ -1661,8 +1881,10 @@
   {
     "id": 110,
     "section": "12. Academic Consultations",
+    "section_no": "12",
+    "topic": "consultation",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "Academic consultation is an integral part of a candidate's academic experience. Academic advisors can provide support and guidance to candidates who seek their service, but it is also the responsibility of each candidate to be familiar with academic policies and regulations and to take responsibility for their studies at HELP University.",
       "An academic advisor offers candidates information, guidance and advice throughout their postgraduate programme. Specifically, academic advisors assist candidates in identifying programme requirements and help them balance their module load each semester, so that they do not take too many demanding modules in one semester. Candidates are also informed of modules that require prerequisites or carry other restrictions before registration.",
@@ -1673,8 +1895,10 @@
   {
     "id": 111,
     "section": "13. Research Candidature and Supervision",
+    "section_no": "13",
+    "topic": "research",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "This section applies to candidates of the Doctor of Philosophy in Computing and the Doctor of Philosophy in Computer Science, and so far as it is relevant, to candidates undertaking the Dissertation (MDS506) or Project Report (MAI506/MCS506) components of the taught Master's programmes."
     ],
@@ -1683,8 +1907,10 @@
   {
     "id": 112,
     "section": "13. Research Candidature and Supervision > 13.1 Appointment of Supervisors",
+    "section_no": "13.1",
+    "topic": "research",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "Every research candidate is assigned a principal supervisor, and where appropriate a co-supervisor, appointed by the faculty on the basis of disciplinary fit with the candidate's proposed area of research. The principal supervisor holds primary responsibility for guiding the candidate's research design, monitoring progress and advising on the preparation of the thesis or report. Where a project is conducted with an industry partner, an additional industry supervisor may be appointed.",
       "A change of supervisor may be requested by either the candidate or the supervisor and is subject to the approval of the Head of School and the Faculty Postgraduate Committee. Such a request should be made in writing, stating the reasons, and will normally be considered only where the change is in the academic interest of the candidate."
@@ -1694,8 +1920,10 @@
   {
     "id": 113,
     "section": "13. Research Candidature and Supervision > 13.2 Progress Monitoring",
+    "section_no": "13.2",
+    "topic": "research",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "Research progress is monitored through periodic progress assessments, as described in Section 6.2. Candidates are required to meet their supervisor regularly, to maintain a record of supervisory meetings, and to submit progress reports at the intervals determined by the faculty. Candidates who fail to maintain contact with their supervisor, or whose progress is assessed as unsatisfactory across consecutive review periods, may be withdrawn from the programme."
     ],
@@ -1704,8 +1932,10 @@
   {
     "id": 114,
     "section": "13. Research Candidature and Supervision > 13.3 Thesis Examination and Viva Voce",
+    "section_no": "13.3",
+    "topic": "research",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "The final assessment for the award of the Doctor of Philosophy is through examination of the thesis and a viva voce conducted by a panel comprising internal and external examiners. The thesis must demonstrate an original contribution to the body of knowledge in the chosen field of computing and must be presented and defended in accordance with HELP University standards. The outcome of the examination is determined by the panel and reported to the Senate for confirmation."
     ],
@@ -1714,8 +1944,10 @@
   {
     "id": 115,
     "section": "13. Research Candidature and Supervision > 13.4 Research Ethics",
+    "section_no": "13.4",
+    "topic": "research",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "All research involving human participants, personal data, or sensitive organisational information requires ethical clearance before data collection commences. Candidates must obtain approval through the faculty's research ethics process and must comply with the Personal Data Protection Act 2010 and any applicable institutional or industry data governance requirements. Responsibility for securing ethical clearance rests with the candidate, in consultation with the supervisor."
     ],
@@ -1724,8 +1956,10 @@
   {
     "id": 116,
     "section": "14. Subject Descriptions",
+    "section_no": "14",
+    "topic": "subject_descriptions",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "The descriptions of the modules offered within each postgraduate programme are given below. Where a module is shared between programmes, the description reflects the delivery of that module within the programme under which it is listed."
     ],
@@ -1734,10 +1968,12 @@
   {
     "id": 117,
     "section": "14. Subject Descriptions > 14.1 Master of Data Science",
+    "section_no": "14.1",
+    "topic": "subject_descriptions",
     "programmes": [
       "MDS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "MDS501 Programming for Data Science",
       "This module equips candidates with the fundamentals of programming using a high-level programming language to solve problems focusing on data. The module covers various data analysis and processing techniques such as retrieval, extraction, conversion, aggregation, filtering, processing and storing, using programming libraries and toolkits.",
@@ -1752,10 +1988,12 @@
   {
     "id": 118,
     "section": "14. Subject Descriptions > 14.1 Master of Data Science",
+    "section_no": "14.1",
+    "topic": "subject_descriptions",
     "programmes": [
       "MDS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "This module provides a foundation in the principles of machine learning by exploring major approaches and algorithms, feature engineering and model evaluation methods. It covers different algorithms and techniques used in developing machine learning systems for real-world problems, focusing on prescriptive analytics.",
       "MDS505 Research Methods",
@@ -1767,10 +2005,12 @@
   {
     "id": 119,
     "section": "14. Subject Descriptions > 14.1 Master of Data Science",
+    "section_no": "14.1",
+    "topic": "subject_descriptions",
     "programmes": [
       "MDS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "This module is a research project based on industry requirements. Candidates conduct an industry-based research project supervised by an academic staff member and a supervisor from industry. They may work on the project on site, or at the University. Candidates apply the knowledge of the foundations, theory and methods of data science acquired in the programme and build a research project of their own from start to finish, gaining real-world exposure to modern data science challenges. Candidates have the flexibility to choose their own domain and technology stack. Projects are drawn from real-world problems and may be conducted with government, industry or academic partners. The dissertation is a significant piece of work in which candidates should demonstrate a mature knowledge of data science and its applications."
     ],
@@ -1779,10 +2019,12 @@
   {
     "id": 120,
     "section": "14. Subject Descriptions > 14.2 Master in Artificial Intelligence (Conventional)",
+    "section_no": "14.2",
+    "topic": "subject_descriptions",
     "programmes": [
       "MAI_CONV"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "MAI501 Applied Programming",
       "This module equips candidates with the fundamentals of programming using a high-level programming language to solve problems focusing on data. The module covers various data analysis and processing techniques such as retrieval, extraction, conversion, aggregation, filtering, processing and storing, using programming libraries and toolkits.",
@@ -1797,10 +2039,12 @@
   {
     "id": 121,
     "section": "14. Subject Descriptions > 14.2 Master in Artificial Intelligence (Conventional)",
+    "section_no": "14.2",
+    "topic": "subject_descriptions",
     "programmes": [
       "MAI_CONV"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "This module guides candidates through the processes involved in conducting research, including writing research proposals and conducting literature reviews. The module also introduces candidates to various methods of conducting quantitative research.",
       "MAI502 Deep Learning for Computer Vision",
@@ -1814,10 +2058,12 @@
   {
     "id": 122,
     "section": "14. Subject Descriptions > 14.2 Master in Artificial Intelligence (Conventional)",
+    "section_no": "14.2",
+    "topic": "subject_descriptions",
     "programmes": [
       "MAI_CONV"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "This module is a project based on academic and/or industry requirements. Candidates conduct a project supervised by an academic staff member and, where applicable, a supervisor from industry. Candidates apply the knowledge of foundations, theory and methods learned throughout the programme to build a project from start to finish, gaining real-world exposure to modern AI challenges. Candidates have the flexibility to choose their own domain and technology stack. Projects may be conducted with government, industry or academic partners, and should demonstrate a mature knowledge of the field and its applications.",
       "MCS502 Network Security and Cryptography (Elective)",
@@ -1829,10 +2075,12 @@
   {
     "id": 123,
     "section": "14. Subject Descriptions > 14.2 Master in Artificial Intelligence (Conventional)",
+    "section_no": "14.2",
+    "topic": "subject_descriptions",
     "programmes": [
       "MAI_CONV"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "This module provides candidates with an understanding of cybersecurity principles and practices, with a focus on ethical considerations in computing. Candidates also learn about policies and compliance standards, ensuring a comprehensive understanding of cybersecurity governance and regulatory requirements. The module aims to equip candidates with the knowledge and skills necessary to protect digital assets, mitigate cybersecurity threats, and understand ethical decision-making in the context of technology.",
       "MDS503 Applied Statistics (Elective)",
@@ -1843,10 +2091,12 @@
   {
     "id": 124,
     "section": "14. Subject Descriptions > 14.3 Master in Artificial Intelligence (ODL)",
+    "section_no": "14.3",
+    "topic": "subject_descriptions",
     "programmes": [
       "MAI_ODL"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "MAI501 Applied Programming",
       "This module equips candidates with the fundamentals of programming using a high-level programming language to solve problems focusing on data. The module covers various data analysis and processing techniques such as retrieval, extraction, conversion, aggregation, filtering, processing and storing, using programming libraries and toolkits.",
@@ -1861,10 +2111,12 @@
   {
     "id": 125,
     "section": "14. Subject Descriptions > 14.3 Master in Artificial Intelligence (ODL)",
+    "section_no": "14.3",
+    "topic": "subject_descriptions",
     "programmes": [
       "MAI_ODL"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "This module provides a foundation in the principles of machine learning by exploring major approaches and algorithms, feature engineering and model evaluation methods. The module covers different algorithms and techniques used in developing machine learning systems for real-world problems, focusing on prescriptive analytics.",
       "MAI505 Research Methodology",
@@ -1878,10 +2130,12 @@
   {
     "id": 126,
     "section": "14. Subject Descriptions > 14.3 Master in Artificial Intelligence (ODL)",
+    "section_no": "14.3",
+    "topic": "subject_descriptions",
     "programmes": [
       "MAI_ODL"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "This module introduces the fundamental concepts and techniques of natural language processing, with an emphasis on two approaches to NLP: probabilistic and machine learning techniques. Natural Language Processing is a sub-area of artificial intelligence which involves the computational modelling of natural languages to form applications such as automatic summarisation, machine translation and speech processing. It is essential in the development of Large Language Models (LLMs).",
       "MAI506 Project Report"
@@ -1891,10 +2145,12 @@
   {
     "id": 127,
     "section": "14. Subject Descriptions > 14.3 Master in Artificial Intelligence (ODL)",
+    "section_no": "14.3",
+    "topic": "subject_descriptions",
     "programmes": [
       "MAI_ODL"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "This module is a project based on academic and/or industry requirements. Candidates conduct a project supervised by an academic staff member and possibly a supervisor from industry. Candidates apply the knowledge of the foundations, theory and methods learned in the programme and build a project of their own from start to finish, gaining real-world exposure to modern challenges. Candidates have the flexibility to choose their own domain and technology stack. Projects are drawn from real-world problems and may be conducted with government, industry or academic partners. The project is a significant piece of work in which candidates should demonstrate a mature knowledge of the field and its applications.",
       "MCS502 Network Security and Cryptography (Elective)"
@@ -1904,10 +2160,12 @@
   {
     "id": 128,
     "section": "14. Subject Descriptions > 14.3 Master in Artificial Intelligence (ODL)",
+    "section_no": "14.3",
+    "topic": "subject_descriptions",
     "programmes": [
       "MAI_ODL"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "This module provides candidates with in-depth knowledge of computer networking and security concepts. It explores the network security concepts and practices applied in industry to defend against numerous types of attack and prepares candidates with the skill sets to construct and analyse digital security within a company.",
       "MAI507 Ethics and Cybersecurity (Elective)",
@@ -1918,10 +2176,12 @@
   {
     "id": 129,
     "section": "14. Subject Descriptions > 14.4 Master of Cybersecurity (ODL)",
+    "section_no": "14.4",
+    "topic": "subject_descriptions",
     "programmes": [
       "MCS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "MCS501 Cybersecurity Fundamentals",
       "This module presents an overview of the coverage of cybersecurity, including how to correctly define relevant threats, assess their severity and probability, and identify countermeasures. Through relevant case studies, candidates can practise preliminary assessment and measurement relating to the security of information assets.",
@@ -1936,10 +2196,12 @@
   {
     "id": 130,
     "section": "14. Subject Descriptions > 14.4 Master of Cybersecurity (ODL)",
+    "section_no": "14.4",
+    "topic": "subject_descriptions",
     "programmes": [
       "MCS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "This module allows candidates to investigate the principles of digital forensics, focusing on computer forensics and its application in real-world scenarios, enabling candidates to analyse and evaluate digital evidence through the use of forensic tools and techniques (public domain tools). Theoretical knowledge of computer information as digital evidence, and the basic techniques associated with gathering, preserving and presenting digital evidence, are also covered.",
       "MDS505 Research Methodology",
@@ -1951,10 +2213,12 @@
   {
     "id": 131,
     "section": "14. Subject Descriptions > 14.4 Master of Cybersecurity (ODL)",
+    "section_no": "14.4",
+    "topic": "subject_descriptions",
     "programmes": [
       "MCS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "This module is a project based on academic and/or industry requirements. Candidates conduct a project supervised by an academic staff member and possibly a supervisor from industry. Candidates apply the knowledge of the foundations, theory and methods learned in the programme and build a project of their own from start to finish, gaining real-world exposure to modern challenges. Candidates have the flexibility to choose their own domain and technology stack. Projects are drawn from real-world problems and may be conducted with government, industry or academic partners. The project is a significant piece of work in which candidates should demonstrate a mature knowledge of the field and its applications.",
       "MDS501 Applied Programming (Elective)",
@@ -1966,10 +2230,12 @@
   {
     "id": 132,
     "section": "14. Subject Descriptions > 14.4 Master of Cybersecurity (ODL)",
+    "section_no": "14.4",
+    "topic": "subject_descriptions",
     "programmes": [
       "MCS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "This module introduces techniques related to the modelling, extraction, cleansing, profiling, integration and access of data. The module then introduces the role of databases and database management systems, covering relational and non-relational databases. Policies for access and sharing, including provisions for the appropriate protection of privacy, ethics, confidentiality, security and other requirements, are also discussed.",
       "MDS503 Applied Statistics (Elective)",
@@ -1982,10 +2248,12 @@
   {
     "id": 133,
     "section": "14. Subject Descriptions > 14.5 Doctor of Philosophy in Computing",
+    "section_no": "14.5",
+    "topic": "subject_descriptions",
     "programmes": [
       "PHD_COMP"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "PHD701 Research Methodology",
       "This module provides guidance on the various processes related to conducting research, including writing research proposals and conducting literature reviews. The module also introduces various methods of conducting quantitative research.",
@@ -1996,10 +2264,12 @@
   {
     "id": 134,
     "section": "14. Subject Descriptions > 14.5 Doctor of Philosophy in Computing",
+    "section_no": "14.5",
+    "topic": "subject_descriptions",
     "programmes": [
       "PHD_COMP"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "This module is a research project based on a gap in the body of knowledge of the chosen topic area in computing. Candidates conduct an in-depth research project supervised by an academic staff member. The research project may be undertaken on site or remotely. Candidates apply the knowledge of the foundations, theory and methods in the field to build a research project of their own from start to finish, gaining real-world exposure to the challenges of conducting focused research. Candidates have the flexibility to choose their own domain and technology stack. Projects are drawn from real-world problems and may be conducted with government, industry or academic partners. The thesis is the most significant piece of work, in which candidates must demonstrate a mature knowledge of the field and contribute to the body of knowledge in computing."
     ],
@@ -2008,10 +2278,12 @@
   {
     "id": 135,
     "section": "14. Subject Descriptions > 14.6 Doctor of Philosophy in Computer Science",
+    "section_no": "14.6",
+    "topic": "subject_descriptions",
     "programmes": [
       "PHD_CS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "PHD701 Research Methodology",
       "This module provides guidance on the various processes related to conducting research, including writing research proposals and conducting literature reviews. The module also introduces various methods of conducting quantitative research.",
@@ -2022,10 +2294,12 @@
   {
     "id": 136,
     "section": "14. Subject Descriptions > 14.6 Doctor of Philosophy in Computer Science",
+    "section_no": "14.6",
+    "topic": "subject_descriptions",
     "programmes": [
       "PHD_CS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "This module is a research project based on a gap in the body of knowledge of the chosen topic area in computer science, aligned with the National Education Code (NEC) 0613. Candidates conduct an in-depth research project supervised by an academic staff member. Candidates apply the knowledge of the foundations, theory and methods in the field to build a research project of their own from start to finish, gaining real-world exposure to the challenges of conducting focused research. Candidates have the flexibility to choose their own domain and technology stack. Projects are drawn from real-world problems and may be conducted with government, industry or academic partners. The thesis is the most significant piece of work, in which candidates must demonstrate a mature knowledge of the field and contribute an original contribution to the body of knowledge in computer science."
     ],
@@ -2034,8 +2308,10 @@
   {
     "id": 137,
     "section": "15. Summary of Programme Structures",
+    "section_no": "15",
+    "topic": "structure_summary",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "The tables below summarise the full module complement of each postgraduate programme. Semester-by-semester sequencing for full-time and part-time study is set out in Section 5."
     ],
@@ -2044,10 +2320,12 @@
   {
     "id": 138,
     "section": "15. Summary of Programme Structures > 15.1 Master of Data Science",
+    "section_no": "15.1",
+    "topic": "structure_summary",
     "programmes": [
       "MDS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "(With effect from January 2021)",
       "Subject Code: MDS501; Subject Name: Programming for Data Science; Classification: Core; Credit Hours: 4.",
@@ -2063,10 +2341,12 @@
   {
     "id": 139,
     "section": "15. Summary of Programme Structures > 15.2 Master in Artificial Intelligence (Conventional)",
+    "section_no": "15.2",
+    "topic": "structure_summary",
     "programmes": [
       "MAI_CONV"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "Subject Code: MAI501; Subject Name: Applied Programming; Classification: Core; Credit Hours: 4.",
       "Subject Code: MAI502; Subject Name: Data Management; Classification: Core; Credit Hours: 4.",
@@ -2086,10 +2366,12 @@
   {
     "id": 140,
     "section": "15. Summary of Programme Structures > 15.3 Master in Artificial Intelligence (ODL)",
+    "section_no": "15.3",
+    "topic": "structure_summary",
     "programmes": [
       "MAI_ODL"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "Subject Code: MAI501; Subject Name: Applied Programming; Classification: Core; Credit Hours: 4.",
       "Subject Code: MAI502; Subject Name: Data Management; Classification: Core; Credit Hours: 4.",
@@ -2108,10 +2390,12 @@
   {
     "id": 141,
     "section": "15. Summary of Programme Structures > 15.4 Master of Cybersecurity (ODL)",
+    "section_no": "15.4",
+    "topic": "structure_summary",
     "programmes": [
       "MCS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "Subject Code: MCS501; Subject Name: Cybersecurity Fundamentals; Classification: Core; Credit Hours: 4.",
       "Subject Code: MCS502; Subject Name: Network Security and Cryptography; Classification: Core; Credit Hours: 4.",
@@ -2130,10 +2414,12 @@
   {
     "id": 142,
     "section": "15. Summary of Programme Structures > 15.5 Doctor of Philosophy in Computing",
+    "section_no": "15.5",
+    "topic": "structure_summary",
     "programmes": [
       "PHD_COMP"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "Subject Code: PHD701; Subject Name: Research Methodology; Classification: Core; Credit Hours: 4.",
       "Subject Code: PHD702; Subject Name: Thesis; Classification: Core; Credit Hours: 76.",
@@ -2144,10 +2430,12 @@
   {
     "id": 143,
     "section": "15. Summary of Programme Structures > 15.6 Doctor of Philosophy in Computer Science",
+    "section_no": "15.6",
+    "topic": "structure_summary",
     "programmes": [
       "PHD_CS"
     ],
-    "mode": null,
+    "load": null,
     "units": [
       "Subject Code: PHD701; Subject Name: Research Methodology; Classification: Core; Credit Hours: 4.",
       "Subject Code: PHD702; Subject Name: Thesis; Classification: Core; Credit Hours: 76.",
@@ -2158,8 +2446,10 @@
   {
     "id": 144,
     "section": "16. Awards and Sponsorships",
+    "section_no": "16",
+    "topic": "awards",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "The achievements of our students are too numerous to mention. In addition to successfully procuring sponsorships and awards from the University and from our industry partners, our students have also been scholarship recipients from our partner universities. Information on HELP study awards and bursaries can be found in the HELP Study Award Booklet."
     ],
@@ -2168,8 +2458,10 @@
   {
     "id": 145,
     "section": "17. Research and Development Activities",
+    "section_no": "17",
+    "topic": "research_areas",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "The faculty is committed to research and development. Our collaborations with many industry partners are evidence of our focus on increasing the industry relevance of our research, and on close engagement with our community. The current focus of the Faculty's R&D activities lies in the areas of analytics, blockchain, cybersecurity and artificial intelligence.",
       "Postgraduate candidates are encouraged to review the research interests below when identifying a dissertation, project or thesis topic, and when approaching prospective supervisors.",
@@ -2182,8 +2474,10 @@
   {
     "id": 146,
     "section": "17. Research and Development Activities",
+    "section_no": "17",
+    "topic": "research_areas",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "Research Area: Artificial Intelligence; Supervisor / Researcher: Ms Naline Shanmugam; Sample Projects: Chatbot for automating responses to common student queries.",
       "Research Area: Artificial Intelligence, Image Processing; Supervisor / Researcher: Dr Umi Najiah Ahmad Razimi; Sample Projects: Air pollution detection using image processing and big data analysis; Android-based indoor air monitoring system using image processing.",
@@ -2196,8 +2490,10 @@
   {
     "id": 147,
     "section": "18. Useful Services > 18.1 Learning Resource Centre (LRC)",
+    "section_no": "18.1",
+    "topic": "services",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "The LRC, also known as the HELP University Library, provides students with learning resources to support study and research, and is managed by a team of professionally qualified personnel and trained assistants. The library has a large collection of books, periodicals and print journals, as well as online resources. Online databases — which are of particular importance to postgraduate research — are accessible using the HELPLIVE email ID and password. Candidates are required to register with the HELPDesk by emailing helpdesk@helplive.edu.my to obtain the login details.",
       "Candidates should refer to the library website at http://library.help.edu.my for regular updates."
@@ -2207,8 +2503,10 @@
   {
     "id": 148,
     "section": "18. Useful Services > 18.2 International Student Services Department (ISSD)",
+    "section_no": "18.2",
+    "topic": "services",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "The ISSD is responsible for providing advice and support to HELP international students with regard to liaison with the Malaysian government authorities, including visa processing and immigration matters, student arrival and induction, student discipline, academic progress and general welfare.",
       "Candidates who are required to renew their student pass shall apply to the ISSD two months in advance of the expiry date. It is the candidate's responsibility to ensure that the Student Pass is valid, and to submit all necessary documents on time for renewal. The ISSD sends a reminder email to candidates 60 days before visa expiry. Please refer to http://help.edu.my/international-student-admission/ for further details."
@@ -2218,8 +2516,10 @@
   {
     "id": 149,
     "section": "18. Useful Services > 18.3 Accommodation",
+    "section_no": "18.3",
+    "topic": "services",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "For information on accommodation, please refer to the website at http://www.help.edu.my/living-lifestyle/campus-accommodation.html."
     ],
@@ -2228,8 +2528,10 @@
   {
     "id": 150,
     "section": "18. Useful Services > 18.4 Computer Facilities and MyPride Student Portal",
+    "section_no": "18.4",
+    "topic": "services",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "1. Computer laboratories and learning spaces equipped with computer facilities are available on campus. The Corporate Information Centre (CIC) HELP Desk provides technical and troubleshooting assistance to support the computer resources at HELP.",
       "2. The “New MyPride” student portal allows candidates to view their official results and financial and academic status, and to verify their personal details. Candidates are required to register with the CIC HELPDesk by emailing helpdesk@helplive.edu.my to obtain the login details for the “New MyPride” account. Candidates with outstanding fees will not be able to view their results on “New MyPride”."
@@ -2239,8 +2541,10 @@
   {
     "id": 151,
     "section": "18. Useful Services > 18.5 HELP Counselling",
+    "section_no": "18.5",
+    "topic": "services",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "Other matters pertaining to student well-being shall be brought to the attention of the Dean of the Faculty for further discussion and resolution. Alternatively, candidates may wish to contact HELP Counselling for career advisory services or professional guidance on personal matters.",
       "CAREERsense@HELP: +603 2711 2000 ext. 1130",
@@ -2251,8 +2555,10 @@
   {
     "id": 152,
     "section": "18. Useful Services > 18.6 Grievance Procedure",
+    "section_no": "18.6",
+    "topic": "services",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "The faculty is committed to providing a conducive study and work environment. All complaints are treated seriously, and the faculty will attempt to resolve them as soon as possible. The faculty has a grievance procedure available to enable candidates to make complaints, and to ensure that complaints are responded to appropriately without prejudice to the candidate. If you have concerns about your treatment by the faculty, by a staff member or by another student, you should first and foremost try to resolve the problem directly with the person(s) concerned. Wherever possible, complaints should be resolved through a process of discussion, cooperation and conciliation."
     ],
@@ -2261,8 +2567,10 @@
   {
     "id": 153,
     "section": "18. Useful Services > 18.7 Disability Services",
+    "section_no": "18.7",
+    "topic": "services",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "If you have a disability, you are encouraged to contact the faculty administrator(s) as early as possible to discuss your individual needs. The faculty administrator(s) will provide the relevant reference or information on the support available (if applicable) from the University."
     ],
@@ -2271,8 +2579,10 @@
   {
     "id": 154,
     "section": "18. Useful Services > 18.8 Faculty Programme Office",
+    "section_no": "18.8",
+    "topic": "services",
     "programmes": [],
-    "mode": null,
+    "load": null,
     "units": [
       "1. The faculty office is open from 9:00 a.m. to 5:30 p.m. on weekdays and from 9:00 a.m. to 1:00 p.m. on Saturdays and is closed on Sundays and public holidays. Please contact us early to confirm the time if you wish to come to the office later in the day.",
       "2. Important information is normally given to candidates via HELPLIVE email. The administrators may also communicate with candidates by telephone; please return our calls if we are unable to reach you. Candidates may communicate with the faculty through office telephones or HELPLIVE email — a response may take up to three working days. Candidates are required to update the faculty of any change in their email address or mobile telephone number."

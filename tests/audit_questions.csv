@@ -1,0 +1,32 @@
+id,category,programme,question,expected_status,expected,keywords,forbidden
+A01,Factual,MAI_CONV,How long is the Master in AI programme?,answer,Full time 1–3 years; part time 2–5 years (§5.3),1–3 years|2–5 years,
+A02,Factual,MAI_CONV,How many credits are required?,answer,40 credit hours once (§15.2),40 credit hours,
+A03,Paraphrased,MAI_CONV,How long will it take if I study while working?,answer,Part time 2–5 years,2–5 years part time,1–3 years
+A04,Out of scope,MAI_CONV,How long is the Bachelor in AI?,scope,Undergraduate programmes are out of scope,postgraduate,
+A05,Unavailable,MAI_CONV,What is the tuition fee for the Master in AI?,not_found,Tuition not listed + enquiry route,tuition|03-7849 3000,RM
+A06,Paraphrased,MAI_CONV,What is the AI tuition fee if I study beyond the standard duration?,answer,Tuition not listed; continuation fee RM2000/year,tuition|RM2,
+A07,Unavailable,MAI_CONV,What is the hostel fee?,not_found,No price; accommodation web page (§18.3),accommodation,RM
+A08,Paraphrased,MAI_CONV,What happens if I fail a module?,answer,Up to 2 retake/redo; AA second attempt; prerequisite rule separate,retake|Additional Assignment|Prerequisite rule,
+A09,Out of scope,MAI_CONV,How old am I?,scope,Scope reply with examples,FCDT postgraduate programmes,
+A10,Paraphrased,MAI_CONV,How many study hours for each course?,not_found,Not stated for AI; do not give credits,not specified,credits)
+A11,Incomplete,MAI_CONV,What do u do for,clarify,Ask to finish question,finish your question,
+A12,Meta,MAI_CONV,What is your name?,meta,Introduce bot and scope,Postgraduate Programme Assistant,
+A13,Switch,MAI_CONV,Tell me about mastes in cyber security,switch,Detect Cybersecurity despite typo; offer switch,Cybersecurity,
+A14,Switch,MAI_CONV,What is the minimum CGPA for cybersecurity?,switch,Offer switch before answering,Switch programme,2.75
+A15,Related,MAI_CONV,What is AI?,related,No definition in handbook; shows Master in AI overview (§5.3) as related,outside the scope|aims to produce graduates,PLO
+A16,Related,MAI_CONV,Is there an internship?,related,Not stated; related industry-linked project (§14.2),no stated internship|industry,supervise the candidate
+A17,Retrieval,MAI_CONV,Which semester is NLP?,answer,Full time Semester 2; part time Semester 5 (§5.3),Semester 2|Semester 5,
+A18,Retrieval,MAI_CONV,What are the electives for AI?,answer,Electives only grouped by semester,Applied Statistics|Natural Language Processing|Network Security|Ethics,Data Management
+A19,Retrieval,MAI_CONV,Can I get a refund if I withdraw from the programme after one week?,answer,50% fees + full deposit and resource fee (§10.6),50%,more than two weeks
+A20,Retrieval,MAI_CONV,Can I get a refund if I withdraw from the programme after three weeks?,answer,No refund except security deposit (§10.6),NOT be given any refund|security deposit,50%
+A21,Unavailable,MAI_CONV,When is the next intake?,not_found,Not listed + contact,intake|03-7849 3000,late enrolment
+A22,Unavailable,MAI_CONV,Just estimate the AI tuition fee for me,not_found,Do not invent a fee,tuition,RM
+A23,Retrieval,MAI_CONV,What English results do international applicants need for AI?,answer,MUET Band 4 or CEFR Low B2 (§7.2),Band 4|CEFR,student pass
+A24,Clarify,MAI_CONV,And how much does it cost?,clarify,Ask which cost,Which cost,
+A25,Retrieval,MAI_ODL,What modules are in the AI ODL part-time structure?,answer,ODL part-time structure (§5.4),SEM 1 / YEAR 1|Deep Learning for Computer Vision,
+A26,Factual,MAI_ODL,How many credits are required for the AI ODL?,answer,40 (§15.3),40 credit hours|15.3,
+A27,Retrieval,MCS,What are the entry requirements?,answer,All §7.3 routes incl. APEL.A,2.50|APEL,2.75
+A28,Retrieval,MCS,Can I apply with a non-computing degree?,answer,Non-Computing CGPA 2.00 routes + prerequisites,2.00|prerequisite,2.75
+A29,Retrieval,MDS,How many hours of classes per week for each subject?,answer,Five hours teaching per subject per week (§5.2),Five hours,
+A30,Verify,PHD_CS,Can I enter the PhD directly with a First Class bachelor's degree?,answer,Handbook: no direct entry from Bachelor's (§7.5) — confirm with lecturer,no direct entry,
+A31,Clarify,ANY,How many credits are required?,clarify,Ask which programme,Which programme,
