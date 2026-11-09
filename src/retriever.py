@@ -1,9 +1,10 @@
 """Step 2 – Information retrieval over handbook chunks.
 
-Three interchangeable rankers so they can be compared in the evaluation:
-  * tfidf  – TF-IDF (stemmed unigrams + bigrams) with cosine similarity
-  * bm25   – Okapi BM25 over the same stemmed tokens
-  * hybrid – weighted combination of the two (default)
+The chatbot uses TF-IDF with cosine similarity. BM25 and a TF-IDF/BM25 hybrid
+are kept only so the evaluation can compare them:
+  * tfidf  – TF-IDF (stemmed unigrams + bigrams) with cosine similarity (used by the chatbot)
+  * bm25   – Okapi BM25 over the same stemmed tokens (comparison)
+  * hybrid – 0.6 TF-IDF + 0.4 BM25 (comparison)
 
 Programme scope is applied as a FILTER before ranking: only chunks tagged with
 the active programme, plus shared (untagged) policy chunks, can be returned.

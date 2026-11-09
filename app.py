@@ -91,7 +91,7 @@ if not ss.get("current") or ss.current not in ss.chats:
         new_chat()
 ss.history = ss.chats[ss.current]["messages"]   # same list object -> edits go into the chat
 ss.setdefault("programme", DEFAULT_PROGRAMME)
-ss.setdefault("method", "hybrid")
+METHOD = "tfidf"   # TF-IDF + cosine similarity (chosen after comparing TF-IDF, BM25, hybrid and semantic; see README)
 ss.setdefault("debug", False)
 ss.setdefault("voice_key", 0)
 ss.setdefault("voice_text", "")
@@ -105,7 +105,7 @@ def submit(question: str, keep: bool = False):
     if not question:
         return
     prog = None if ss.programme == "ANY" else ss.programme
-    bot = Chatbot(retriever, method=ss.method)
+    bot = Chatbot(retriever, method=METHOD)
     ans = bot.ask(question, programme=prog, keep_programme=keep)
     chat = ss.chats[ss.current]
     if not chat["messages"]:
@@ -147,6 +147,11 @@ def discard_voice():
     ss.voice_key += 1
 
 
+# Handle a new typed question BEFORE drawing the sidebar, so the chat list is up to date
+question = st.chat_input("Ask about entry requirements, modules, credits, duration…")
+if question:
+    submit(question)
+
 # ---------------- Sidebar: chat history + settings ---------------- #
 with st.sidebar:
     st.button("➕ New chat", use_container_width=True, on_click=new_chat)
@@ -166,20 +171,15 @@ with st.sidebar:
         st.caption("Answers are based on the HELP University FCDT Postgraduate Handbook 2026/2027 "
                    f"({len(retriever.chunks)} indexed passages). Undergraduate programmes are not covered. "
                    "Chat history is stored only on this computer.")
-    with st.expander("Demo settings (for lecturer)"):
-        ss.method = st.radio("Retrieval method", ["hybrid", "tfidf", "bm25"],
-                             index=["hybrid", "tfidf", "bm25"].index(ss.method),
-                             help="hybrid = 0.6 × TF-IDF cosine + 0.4 × BM25 (both normalised)")
-        ss.debug = st.checkbox("Show retrieval details", value=ss.debug)
+    with st.expander("Show how it works"):
+        st.caption("Retrieval: TF-IDF vectors ranked by cosine similarity.")
+        ss.debug = st.checkbox("Show retrieval details under each answer", value=ss.debug)
         st.caption(f"Voice backend: {speech.available_backend() or 'not installed'}")
 
 # ---------------- Header + programme choice ---------------- #
 st.header("🎓 FCDT Postgraduate Assistant")
 st.selectbox("Programme", PROG_KEYS, key="programme", format_func=lambda k: PROG_LABEL[k])
 
-question = st.chat_input("Ask about entry requirements, modules, credits, duration…")
-if question:
-    submit(question)
 
 # ---------------- Chat history ---------------- #
 if not ss.history:
@@ -198,7 +198,7 @@ for i, m in enumerate(ss.history):
         label = STATUS.get(m["status"], "")
         prog_name = "Any programme" if m["programme"] == "ANY" else SHORT[m["programme"]]
         st.caption(f"{label}  ·  {prog_name}" if label != "👋" else prog_name)
-        st.markdown(m["lead"])
+        st.markdown(md_escape(m["lead"]))
         if m["details"]:
             bullets = "\n".join(f"- {md_escape(d)}" for d in m["details"])
             if m.get("collapse"):
