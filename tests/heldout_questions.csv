@@ -1,0 +1,16 @@
+id,category,question,expected,keywords,answerable
+H01,Factual,What is the programme code for the Master of Data Science?,HUMDS,HUMDS,yes
+H02,Factual,What is the grade point for a B+?,3.50,3.50,yes
+H03,Factual,What is the minimum CGPA for the Master of Cybersecurity?,2.50 (Computing degree),2.50,yes
+H04,Paraphrased,Can I switch from full time to part time?,Allowed (MDS only); first change free; RM100 for later changes,RM100,yes
+H05,Paraphrased,Do I get money back if I quit after one week?,50% of semester fees + full deposit/resource fee if within two weeks,50%,yes
+H06,Paraphrased,Can I go straight from a bachelor's degree into a PhD?,No direct entry from Bachelor's to PhD,no direct entry,yes
+H07,Paraphrased,Who is the dean?,Acting Dean: Professor Dr Lee Chee Leong,Lee Chee Leong,yes
+H08,Paraphrased,How many hours of classes per week for each data science subject?,Five hours per subject per week,Five hours,yes
+H09,Retrieval,How do I get access to the library's online databases?,HELPLIVE email ID; register via helpdesk@helplive.edu.my,helpdesk@helplive.edu.my,yes
+H10,Retrieval,How early should I renew my student pass?,Two months before expiry,two months,yes
+H11,Retrieval,What topics does the natural language processing module cover?,Probabilistic and machine-learning approaches to NLP,probabilistic,yes
+H12,Retrieval,What is the phone number for counselling services?,+603 2096 1212 (CAREERsense ext. 1130),2096 1212,yes
+H13,Unavailable,What is the graduate employment rate of the AI programme?,Not in documents,,no
+H14,Unavailable,Can I take the Master in AI in Bahasa Melayu?,Not in documents,,no
+H15,Unavailable,What laptop specification do I need for the AI master?,Not in documents,,no

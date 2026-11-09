@@ -1,0 +1,25 @@
+id,category,question,expected,keywords,answerable
+Q01,Factual,How long is the Master in Artificial Intelligence programme?,Full time: min 1 year / max 3 years (part time 2 / 5),1 Year|3 Years,yes
+Q02,Factual,How many credits are required for the Master in AI?,40 credit hours,40,yes
+Q03,Factual,What are the entry requirements for the Master in Artificial Intelligence?,Bachelor's degree (MQF Level 6) in AI/Computing/STE with min CGPA 2.50 (or 2.00 with rigorous assessment),Bachelor|2.50,yes
+Q04,Factual,What MUET band do international applicants need for the AI master?,MUET Band 4 or CEFR Low B2,Band 4,yes
+Q05,Factual,How long is the PhD in Computer Science full time?,Min 3 years / max 5 years,3 Years|5 Years,yes
+Q06,Paraphrased,What subjects will I study in the AI master?,"Applied Programming, Data Management, Research Methodology, Deep Learning for CV, Advanced ML, Project Report + electives",Deep Learning for Computer Vision|Natural Language Processing|Project Report,yes
+Q07,Paraphrased,How many years does it take to finish the AI master if I study part-time?,Min 2 years / max 5 years,2 Years|5 Years,yes
+Q08,Paraphrased,What happens if I fail a module?,Up to 2 retake/redo chances; second attempt via Additional Assignment,retake,yes
+Q09,Paraphrased,Am I allowed to use ChatGPT for my assignments?,Only if the module outline permits generative AI; undisclosed use is misconduct,generative,yes
+Q10,Paraphrased,What score do I need to get a distinction?,80–89 = A (Distinction),80,yes
+Q11,Paraphrased,Is there an internship or industrial training?,No internship listed; Project Report (MAI506) may be done with an industry supervisor/partner,industry,yes
+Q12,Retrieval,What is the minimum attendance for international students?,80% per enrolled subject,80%,yes
+Q13,Retrieval,How is each module in the Master in AI assessed?,Continuous assessment 40–60% and final assessment 40–60%; must pass both,40 – 60%,yes
+Q14,Retrieval,How much credit can be transferred from another institution?,Up to 50% of the programme requirement,50%,yes
+Q15,Retrieval,What are the faculty office opening hours?,9:00 a.m.–5:30 p.m. weekdays; 9:00 a.m.–1:00 p.m. Saturdays,9:00 a.m.|5:30 p.m.,yes
+Q16,Retrieval,How much is the continuation fee if I go beyond the standard duration?,RM2000 per year beyond standard duration,"RM2,000",yes
+Q17,Retrieval,Which lecturer supervises chatbot projects?,Ms Naline Shanmugam,Naline,yes
+Q18,Retrieval,What English score is required for the PhD in Computing?,IELTS 6.0 or equivalent,IELTS|6.0,yes
+Q19,Retrieval,What career opportunities are there after the AI master?,Only general statement: AI professionals designing/developing/deploying intelligent systems,AI professionals,yes
+Q20,Unavailable,What is the tuition fee for the Master in AI?,Not in documents,,no
+Q21,Unavailable,What is the hostel fee?,Not in documents (handbook only gives the accommodation web page),,no
+Q22,Unavailable,When is the next intake for the AI programme?,Not in documents,,no
+Q23,Unavailable,Who is the programme leader for the Master in AI?,Not in documents,,no
+Q24,Unavailable,Is there a shuttle bus to the campus?,Not in documents,,no
