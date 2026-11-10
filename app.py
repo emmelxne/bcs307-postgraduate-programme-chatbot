@@ -78,7 +78,6 @@ if not ss.get("current") or ss.current not in ss.chats:
 ss.history = ss.chats[ss.current]["messages"]   # same list object -> edits go into the chat
 ss.setdefault("programme", DEFAULT_PROGRAMME)
 ss.setdefault("programme_selector", ss.programme)
-METHOD = "tfidf"   # TF-IDF + cosine similarity (chosen after comparing TF-IDF, BM25, hybrid and semantic; see README)
 ss.setdefault("debug", False)
 ss.setdefault("voice_key", 0)
 ss.setdefault("voice_text", "")
@@ -92,7 +91,7 @@ def submit(question: str):
     if not question:
         return
     prog = None if ss.programme == "ANY" else ss.programme
-    bot = Chatbot(retriever, method=METHOD)
+    bot = Chatbot(retriever)
     ans = bot.ask(question, programme=prog)
     record_answer(question, ans)
 

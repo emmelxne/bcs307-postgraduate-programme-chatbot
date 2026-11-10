@@ -21,7 +21,7 @@ class CorrectnessTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.r = Retriever()
-        cls.bot = Chatbot(cls.r, method='tfidf')
+        cls.bot = Chatbot(cls.r)
 
     def test_csv_regressions(self):
         with (ROOT / 'tests/correctness_regressions.csv').open(encoding='utf-8') as f:
@@ -40,7 +40,7 @@ class CorrectnessTests(unittest.TestCase):
             if c['section_no'] == '15.2':
                 c['units'] = [u.replace('Credit Hours: 4.', 'Credit Hours: 7.')
                               if 'Subject Code: MAI503;' in u else u for u in c['units']]
-        ans = Chatbot(r, method='tfidf').ask('How many credits is MAI503?')
+        ans = Chatbot(r).ask('How many credits is MAI503?')
         self.assertIn('7 credit hours', ans.text)
         self.assertNotIn('4 credit hours', ans.text)
         self.assertTrue(any('§15.2' in s for s in ans.sources))

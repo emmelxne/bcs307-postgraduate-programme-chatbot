@@ -1,6 +1,6 @@
 """Step 4 – Evaluation.
 
-Runs each question set through the chatbot with each retrieval method and
+Runs each question set through the chatbot (TF-IDF + cosine retrieval) and
 labels the outcome. Question sets:
 
   tests/test_questions.csv    – development set (used while building the rules)
@@ -46,7 +46,6 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "results"
 SETS = {"dev": "test_questions.csv", "heldout": "heldout_questions.csv",
         "audit": "audit_questions.csv", "final": "final_questions.csv"}
-METHODS = ["tfidf", "bm25", "hybrid"]
 ANSWERED = {"answer", "related"}
 ABSTAIN = {"not_found", "scope"}
 
@@ -80,44 +79,40 @@ def label(row, ans) -> str:
 def run_set(name, path, retriever, summary):
     rows = list(csv.DictReader(path.open(encoding="utf-8")))
     summary += [f"\n## {name} set ({len(rows)} questions)\n",
-                "| Method | Correct | Accuracy | Outcomes |", "|---|---|---|---|"]
-    cat_lines = []
-    for method in METHODS:
-        bot = Chatbot(retriever, method=method)
-        out_rows, counts, by_cat = [], Counter(), defaultdict(lambda: [0, 0])
-        for r in rows:
-            prog = (r.get("programme") or DEFAULT_PROGRAMME).strip()
-            a = bot.ask(r["question"], programme=None if prog == "ANY" else prog)
-            switched = ""
-            if a.status == "switch" and "switch" not in expected_statuses(r):
-                # Older sets name the programme in the question: act like a user who
-                # clicks the first "Switch to ..." button, then re-ask.
-                target = a.options[0]["value"]
-                switched = f"(switched to {target}) "
-                a = bot.ask(r["question"], programme=target)
-            lab = label(r, a)
-            ok = lab == "Correct"
-            counts[lab] += 1
-            by_cat[r["category"]][0] += ok
-            by_cat[r["category"]][1] += 1
-            out_rows.append({
-                "id": r["id"], "category": r["category"], "programme": prog, "question": r["question"],
-                "expected": r["expected"], "status": switched + a.status, "chatbot_answer": a.text.replace("\n", " "),
-                "options": " | ".join(o["label"] for o in a.options), "sources": " | ".join(a.sources),
-                "confidence": f"{a.confidence:.3f}", "coverage": f"{a.coverage:.2f}",
-                "result": lab, "correct": "Yes" if ok else "No", "manual_verdict": "",
-            })
-        with (OUT / f"{name}_{method}.csv").open("w", newline="", encoding="utf-8-sig") as f:
-            w = csv.DictWriter(f, fieldnames=list(out_rows[0]))
-            w.writeheader()
-            w.writerows(out_rows)
-        n_ok = counts["Correct"]
-        outcomes = ", ".join(f"{k} {v}" for k, v in sorted(counts.items()))
-        summary.append(f"| {method} | {n_ok}/{len(rows)} | {n_ok / len(rows):.0%} | {outcomes} |")
-        cat_lines.append(f"- **{method}** by category: " +
-                         ", ".join(f"{c} {ok}/{n}" for c, (ok, n) in by_cat.items()))
-        print(f"[{name}] {method:7s} {n_ok}/{len(rows)} = {n_ok / len(rows):.0%}  {dict(counts)}")
-    summary += [""] + cat_lines
+                "| Correct | Accuracy | Outcomes |", "|---|---|---|"]
+    bot = Chatbot(retriever)
+    out_rows, counts, by_cat = [], Counter(), defaultdict(lambda: [0, 0])
+    for r in rows:
+        prog = (r.get("programme") or DEFAULT_PROGRAMME).strip()
+        a = bot.ask(r["question"], programme=None if prog == "ANY" else prog)
+        switched = ""
+        if a.status == "switch" and "switch" not in expected_statuses(r):
+            # Older sets name the programme in the question: act like a user who
+            # clicks the first "Switch to ..." button, then re-ask.
+            target = a.options[0]["value"]
+            switched = f"(switched to {target}) "
+            a = bot.ask(r["question"], programme=target)
+        lab = label(r, a)
+        ok = lab == "Correct"
+        counts[lab] += 1
+        by_cat[r["category"]][0] += ok
+        by_cat[r["category"]][1] += 1
+        out_rows.append({
+            "id": r["id"], "category": r["category"], "programme": prog, "question": r["question"],
+            "expected": r["expected"], "status": switched + a.status, "chatbot_answer": a.text.replace("\n", " "),
+            "options": " | ".join(o["label"] for o in a.options), "sources": " | ".join(a.sources),
+            "confidence": f"{a.confidence:.3f}", "coverage": f"{a.coverage:.2f}",
+            "result": lab, "correct": "Yes" if ok else "No", "manual_verdict": "",
+        })
+    with (OUT / f"{name}_results.csv").open("w", newline="", encoding="utf-8-sig") as f:
+        w = csv.DictWriter(f, fieldnames=list(out_rows[0]))
+        w.writeheader()
+        w.writerows(out_rows)
+    n_ok = counts["Correct"]
+    outcomes = ", ".join(f"{k} {v}" for k, v in sorted(counts.items()))
+    summary.append(f"| {n_ok}/{len(rows)} | {n_ok / len(rows):.0%} | {outcomes} |")
+    summary += ["", "By category: " + ", ".join(f"{c} {ok}/{n}" for c, (ok, n) in by_cat.items())]
+    print(f"[{name}] {n_ok}/{len(rows)} = {n_ok / len(rows):.0%}  {dict(counts)}")
 
 
 def main():

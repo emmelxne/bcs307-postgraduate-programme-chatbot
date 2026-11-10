@@ -1,10 +1,7 @@
 """Step 2 – Information retrieval over handbook chunks.
 
-The chatbot uses TF-IDF with cosine similarity. BM25 and a TF-IDF/BM25 hybrid
-are kept only so the evaluation can compare them:
-  * tfidf  – TF-IDF (stemmed unigrams + bigrams) with cosine similarity (used by the chatbot)
-  * bm25   – Okapi BM25 over the same stemmed tokens (comparison)
-  * hybrid – 0.6 TF-IDF + 0.4 BM25 (comparison)
+Chunks are ranked by TF-IDF (stemmed unigrams + bigrams, sublinear tf) with
+cosine similarity between the expanded question and each chunk.
 
 Programme scope is applied as a FILTER before ranking: only chunks tagged with
 the active programme, plus shared (untagged) policy chunks, can be returned.
@@ -17,7 +14,6 @@ from dataclasses import dataclass
 from pathlib import Path
 
 import numpy as np
-from rank_bm25 import BM25Okapi
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
@@ -42,7 +38,6 @@ class Retriever:
         texts = [c["text"] for c in self.chunks]
         self.vectorizer = TfidfVectorizer(analyzer=analyzer, sublinear_tf=True, min_df=1)
         self.matrix = self.vectorizer.fit_transform(texts)
-        self.bm25 = BM25Okapi([normalise(t) for t in texts])
         self.tokens = [set(normalise(t)) for t in texts]
 
     # ------------------------------------------------------------------ #
@@ -60,7 +55,7 @@ class Retriever:
                 mask[i] = False
         return mask
 
-    def search(self, query: str, k: int = 5, method: str = "hybrid",
+    def search(self, query: str, k: int = 5,
                scope: set[str] | None = None, topics: set[str] | None = None,
                tagged_only: bool = False) -> list[Hit]:
         mask = self.candidates(scope, topics, tagged_only)
@@ -68,18 +63,7 @@ class Retriever:
             return []
         expanded = expand_query(query)
         tfidf = cosine_similarity(self.vectorizer.transform([expanded]), self.matrix).ravel()
-        bm25 = np.asarray(self.bm25.get_scores(normalise(expanded)), dtype=float)
-
-        def norm(x):
-            m = x[mask].max() if mask.any() else 0
-            return x / m if m > 0 else x
-
-        if method == "tfidf":
-            base = tfidf.copy()
-        elif method == "bm25":
-            base = norm(bm25)
-        else:
-            base = 0.6 * norm(tfidf) + 0.4 * norm(bm25)
+        base = tfidf.copy()
 
         load = detect_load(query)
         boost = np.ones(len(self.chunks))

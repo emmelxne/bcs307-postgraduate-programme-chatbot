@@ -15,7 +15,7 @@ Pipeline for every question (typed or transcribed from voice):
                            intake, internship, teaching hours, failing a
                            module. Each reads only the passages that can
                            support that specific fact.
-4. General retrieval     – TF-IDF / BM25 search restricted to the programme,
+4. General retrieval     – TF-IDF + cosine search restricted to the programme,
                            answerability gate, extractive sentence selection.
 
 Every answer line is copied from (or directly computed from) the handbook and
@@ -114,9 +114,8 @@ def years_range(text: str) -> tuple[str, str] | None:
 
 # ====================================================================== #
 class Chatbot:
-    def __init__(self, retriever: Retriever | None = None, method: str = "hybrid"):
+    def __init__(self, retriever: Retriever | None = None):
         self.r = retriever or Retriever()
-        self.method = method
         self.modules = self._module_index()
 
     # ------------------------------------------------------------------ #
@@ -327,7 +326,7 @@ class Chatbot:
         return None
 
     def _answer_fact(self, q, scope, fact):
-        hits = self.r.search(q, k=6, method=self.method, scope=scope or None)
+        hits = self.r.search(q, k=6, scope=scope or None)
         # Require the requested relationship in a single source unit. These are
         # evidence constraints, not a change to the global similarity threshold.
         patterns = {
@@ -749,7 +748,7 @@ class Chatbot:
 
     # ================= 4. general retrieval =========================== #
     def _general(self, q, scope, prog) -> Answer:
-        hits = self.r.search(q, k=6, method=self.method, scope=scope or None)
+        hits = self.r.search(q, k=6, scope=scope or None)
         if not hits:
             return Answer("not_found", NOT_FOUND)
         top = hits[0]
