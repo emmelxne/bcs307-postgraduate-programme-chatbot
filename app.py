@@ -177,7 +177,11 @@ with st.sidebar:
         st.caption(f"Voice backend: {speech.available_backend() or 'not installed'}")
 
 # ---------------- Header + programme choice ---------------- #
-st.header("🎓 FCDT Postgraduate Assistant")
+LOGO = Path(__file__).parent / "assets" / "HelpLogo.png"
+logo_col, title_col = st.columns([1, 3], vertical_alignment="center")
+if LOGO.exists():
+    logo_col.image(str(LOGO), width=140)
+title_col.header("FCDT Postgraduate Assistant")
 st.selectbox("Programme", PROG_KEYS, key="programme", format_func=lambda k: PROG_LABEL[k])
 
 
