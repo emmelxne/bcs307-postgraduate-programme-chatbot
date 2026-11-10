@@ -34,10 +34,11 @@ chat history is not loaded from or written to `.chat_history.json`.
 The interface uses Streamlit’s light theme with a white background, charcoal text, a neutral sidebar
 and HELP-red controls. The centred header uses separate local HELP and FCDT logo cutouts from the
 supplied screenshot, without redrawing or recolouring them. It adapts to desktop and phone widths.
-Programme selection, the active scope and voice input appear above the chat; typed input stays at the bottom.
+Programme selection and the active scope appear above the chat. The Voice button and typed input
+stay together in the pinned bottom composer. Voice recordings are reviewed and explicitly sent before answering.
 
 ### Voice input (optional extension)
-Open **🎤 Ask by voice**, record, check/edit the transcript, then **Send question**. The transcript goes
+Open **Voice** beside the typing bar, record, check/edit the transcript, then **Send question**. The transcript goes
 through exactly the same pipeline as a typed question.
 
 - Default: `SpeechRecognition` (in `requirements.txt`) – uses Google's free Web Speech service, needs internet.

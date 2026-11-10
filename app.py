@@ -149,8 +149,33 @@ def discard_voice():
     ss.voice_key += 1
 
 
-# Handle a new typed question BEFORE drawing the sidebar, so the chat list is up to date
-question = st.chat_input("Ask about entry requirements, modules, credits, duration…")
+# Keep recording and typed entry together in Streamlit's native pinned area.
+# Submissions still run before drawing history and the sidebar.
+with st.bottom:
+    with st.container(horizontal=True, wrap=False, vertical_alignment="center",
+                      gap="small", key="chat-composer"):
+        with st.popover("Voice", icon=":material/mic:", type="primary",
+                        help="Ask by voice — record, review and send your question.",
+                        key="voice-panel"):
+            st.markdown("**Ask by voice**")
+            st.caption("Review or edit the transcript before sending.")
+            audio = st.audio_input("Record a question", key=f"voice-{ss.voice_key}")
+            if audio is not None:
+                wav = audio.getvalue()
+                digest = hashlib.md5(wav).hexdigest()
+                if digest != ss.voice_digest:            # transcribe each new clip once
+                    ss.voice_digest = digest
+                    with st.spinner("Transcribing…"):
+                        ss.voice_text, ss.voice_error = speech.transcribe(wav)
+            if ss.voice_error:
+                st.warning(ss.voice_error)
+            if ss.voice_text:
+                st.text_input("Transcript — check and edit before sending", value=ss.voice_text, key="voice_edit")
+                c1, c2 = st.columns(2)
+                c1.button("Send question", type="primary", use_container_width=True, on_click=send_voice)
+                c2.button("Discard", use_container_width=True, on_click=discard_voice)
+        question = st.chat_input("Ask about entry requirements, modules, credits, duration…",
+                                 key="typed-question")
 if question:
     submit(question)
 
@@ -187,24 +212,6 @@ st.selectbox("Programme", PROG_KEYS, key="programme_selector", format_func=lambd
 # ---------------- Voice input ---------------- #
 answering = PROG_LABEL[ss.programme] if ss.programme != "ANY" else "any programme"
 st.caption(f"Answering for: **{answering}**")
-with st.expander("🎤 Ask by voice"):
-    audio = st.audio_input("Record a question", key=f"voice-{ss.voice_key}")
-    if audio is not None:
-        wav = audio.getvalue()
-        digest = hashlib.md5(wav).hexdigest()
-        if digest != ss.voice_digest:            # transcribe each new clip once
-            ss.voice_digest = digest
-            with st.spinner("Transcribing…"):
-                ss.voice_text, ss.voice_error = speech.transcribe(wav)
-    if ss.voice_error:
-        st.warning(ss.voice_error)
-    if ss.voice_text:
-        st.text_input("Transcript — check and edit before sending", value=ss.voice_text, key="voice_edit")
-        c1, c2 = st.columns(2)
-        c1.button("Send question", type="primary", use_container_width=True, on_click=send_voice)
-        c2.button("Discard", use_container_width=True, on_click=discard_voice)
-
-
 # ---------------- Chat history ---------------- #
 if not ss.history:
     st.markdown("#### How can I help?")
