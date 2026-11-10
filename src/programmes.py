@@ -66,13 +66,13 @@ def _detect(text: str, is_heading: bool) -> set[str]:
             found.add("MAI_CONV")
         else:
             found |= {"MAI_CONV", "MAI_ODL"}
-    if re.search(r"data science|\bmds\b|\bhumds\b", t) and not re.search(r"for data science|statistics for", t):
+    if re.search(r"data science|\bmds\b|\bhumds\b", t) and not re.search(r"\bstatistics for data science\b", t):
         found.add("MDS")
     if is_heading:
         if re.search(r"master of cybersecurity|\bhumcs\b", t):
             found.add("MCS")
     elif re.search(r"master(s)? (of|in) cybersecurity|cybersecurity (master|programme|program|degree|course)"
-                   r"|\bmcs\b|about cybersecurity\b|cybersecurity\??$|for cybersecurity|cybersecurity (entry|minimum|cgpa|odl)", t):
+                   r"|\bmcs\b|about cybersecurity\b|cybersecurity\??$|for cybersecurity|cybersecurity(?:['’]s)? (entry|minimum|cgpa|odl)", t):
         found.add("MCS")
     if re.search(r"\bphd\b|doctor|doctoral", t):
         if "computer science" in t:
@@ -88,8 +88,32 @@ def detect_in_heading(text: str) -> set[str]:
     return _detect(text, is_heading=True)
 
 
+def is_comparison(text: str) -> bool:
+    return bool(re.search(r"\bcompar(?:e|ison)\b|\bversus\b|\bvs\.?\b|difference between|\bboth\b", text.lower()))
+
+
 def detect_in_query(text: str) -> set[str]:
-    return _detect(text, is_heading=False)
+    t = fix_typos(text)
+    if not is_comparison(t):
+        return _detect(t, is_heading=False)
+
+    # Compare every named side independently: a mode on one programme must
+    # not qualify another. Derive comparison aliases from the same metadata
+    # used by the selector and reply buttons, independent of prepositions.
+    aliases: dict[str, set[str]] = {}
+    for key, full_name in PROGRAMMES.items():
+        for label in (full_name, SHORT[key]):
+            name = re.sub(r"\s*(?:\([^)]*\)|·.*)$", "", label.lower()).strip()
+            name = re.sub(r"^master (?:in|of) ", "", name)
+            aliases.setdefault(name, set()).add(key)
+    found: set[str] = set()
+    for side in re.split(r"\band\b|\bversus\b|\bvs\.?\b|\bagainst\b|;", t):
+        local = _detect(side, is_heading=False)
+        found |= local
+        for name, keys in aliases.items():
+            if re.search(rf"\b{re.escape(name)}\b", side):
+                found |= (keys & local or keys)
+    return found
 
 
 def detect_load(text: str) -> str | None:

@@ -3,22 +3,24 @@
 Run:  python -m streamlit run app.py
 """
 import hashlib
-import json
 import sys
 import time
 import uuid
 from pathlib import Path
 
 import streamlit as st
+from ui import apply_style, render_header
 
 sys.path.insert(0, str(Path(__file__).parent / "src"))
-from chatbot import Chatbot, md_escape  # noqa: E402
+from chatbot import Answer, Chatbot, md_escape  # noqa: E402
 from programmes import DEFAULT_PROGRAMME, PROGRAMMES, SHORT  # noqa: E402
 from retriever import Retriever  # noqa: E402
 import speech  # noqa: E402
 
-st.set_page_config(page_title="FCDT Postgraduate Assistant", page_icon="🎓",
+st.set_page_config(page_title="Postgraduate Programme Assistant", page_icon="🎓",
                    layout="centered", initial_sidebar_state="auto")  # auto = closed on phones
+
+apply_style()
 
 STATUS = {  # text labels, not colour alone
     "answer": "✅ Answer",
@@ -31,21 +33,6 @@ STATUS = {  # text labels, not colour alone
 }
 PROG_KEYS = list(PROGRAMMES) + ["ANY"]
 PROG_LABEL = {**PROGRAMMES, "ANY": "Any programme (I'll ask if needed)"}
-HISTORY_FILE = Path(__file__).parent / ".chat_history.json"   # local only, ignored by git
-
-
-def load_chats() -> dict:
-    try:
-        return json.loads(HISTORY_FILE.read_text(encoding="utf-8"))
-    except Exception:  # noqa: BLE001 – missing or corrupt file -> start fresh
-        return {}
-
-
-def save_chats():
-    try:
-        HISTORY_FILE.write_text(json.dumps(ss.chats, ensure_ascii=False), encoding="utf-8")
-    except Exception as e:  # noqa: BLE001
-        print(f"[app] could not save chat history: {e!r}")
 
 
 @st.cache_resource
@@ -63,7 +50,7 @@ except Exception as e:  # noqa: BLE001
 
 ss = st.session_state
 if "chats" not in ss:
-    ss.chats = load_chats()          # {id: {"title", "updated", "messages": [...]}}
+    ss.chats = {}                    # isolated to this browser's Streamlit session
 
 
 def new_chat():
@@ -78,7 +65,6 @@ def open_chat(cid):
 
 def delete_chat(cid):
     ss.chats.pop(cid, None)
-    save_chats()
     if ss.get("current") == cid:
         ss.current = None
 
@@ -91,6 +77,7 @@ if not ss.get("current") or ss.current not in ss.chats:
         new_chat()
 ss.history = ss.chats[ss.current]["messages"]   # same list object -> edits go into the chat
 ss.setdefault("programme", DEFAULT_PROGRAMME)
+ss.setdefault("programme_selector", ss.programme)
 METHOD = "tfidf"   # TF-IDF + cosine similarity (chosen after comparing TF-IDF, BM25, hybrid and semantic; see README)
 ss.setdefault("debug", False)
 ss.setdefault("voice_key", 0)
@@ -100,39 +87,54 @@ ss.setdefault("voice_digest", "")
 
 
 # ------------------------------------------------------------------ #
-def submit(question: str, keep: bool = False):
+def submit(question: str):
     question = question.strip()
     if not question:
         return
     prog = None if ss.programme == "ANY" else ss.programme
     bot = Chatbot(retriever, method=METHOD)
-    ans = bot.ask(question, programme=prog, keep_programme=keep)
+    ans = bot.ask(question, programme=prog)
+    record_answer(question, ans)
+
+
+def record_answer(question: str, ans: Answer, add_user: bool = True):
     chat = ss.chats[ss.current]
     if not chat["messages"]:
         chat["title"] = question[:40] + ("…" if len(question) > 40 else "")
     chat["updated"] = time.time()
     ss.history = chat["messages"]
-    ss.history.append({"role": "user", "content": question})
+    if add_user:
+        ss.history.append({"role": "user", "content": question})
     debug = None
     if ans.hits:
         debug = {"intent": ans.intent, "confidence": ans.confidence, "coverage": ans.coverage,
                  "hits": [(h.score, h.tfidf, h.chunk["section"], h.chunk["text"][:280]) for h in ans.hits[:5]]}
     ss.history.append({"role": "assistant", "status": ans.status, "lead": ans.lead, "details": ans.details,
                        "sources": ans.sources, "options": ans.options, "origin": question,
-                       "programme": ss.programme, "intent": ans.intent, "debug": debug, "collapse": ans.collapse,
+                       "programme": ans.programme or ss.programme, "intent": ans.intent, "debug": debug, "collapse": ans.collapse,
                        "text": ans.text})
-    save_chats()
 
 
-def on_option(opt: dict, origin: str):
+def select_programme():
+    ss.programme = ss.programme_selector
+
+
+def on_option(opt: dict, origin: str, index: int):
+    # Consume the prompt before acting, including double clicks / stale callbacks.
+    if index >= len(ss.history) or not ss.history[index].get("options"):
+        return
+    ss.history[index]["options"] = []
     action = opt["action"]
     if action == "ask":
         submit(opt["value"])
     elif action in ("switch", "set_programme"):
         ss.programme = opt["value"]
-        submit(origin)
+        ss.programme_selector = ss.programme
+        submit(opt.get("question", origin))
     elif action == "keep":
-        submit(origin, keep=True)
+        ans = Answer("meta", f"Keeping **{PROGRAMMES[ss.programme]}** selected. Please ask a new question about this programme.",
+                     programme=ss.programme)
+        record_answer(origin, ans, add_user=False)
 
 
 def send_voice():
@@ -154,7 +156,7 @@ if question:
 
 # ---------------- Sidebar: chat history + settings ---------------- #
 with st.sidebar:
-    st.button("➕ New chat", use_container_width=True, on_click=new_chat)
+    st.button("New chat", icon=":material/add:", use_container_width=True, on_click=new_chat)
     st.subheader("Chat history")
     chats = sorted(((c, v) for c, v in ss.chats.items() if v["messages"]),
                    key=lambda kv: kv[1]["updated"], reverse=True)
@@ -170,32 +172,52 @@ with st.sidebar:
     with st.expander("About"):
         st.caption("Answers are based on the HELP University FCDT Postgraduate Handbook 2026/2027 "
                    f"({len(retriever.chunks)} indexed passages). Undergraduate programmes are not covered. "
-                   "Chat history is stored only on this computer.")
+                   "Chat history is kept only in this browser session.")
     with st.expander("Show how it works"):
         st.caption("Retrieval: TF-IDF vectors ranked by cosine similarity.")
         ss.debug = st.checkbox("Show retrieval details under each answer", value=ss.debug)
         st.caption(f"Voice backend: {speech.available_backend() or 'not installed'}")
 
 # ---------------- Header + programme choice ---------------- #
-LOGO = Path(__file__).parent / "assets" / "HelpLogo.png"
-logo_col, title_col = st.columns([1, 3], vertical_alignment="center")
-if LOGO.exists():
-    logo_col.image(str(LOGO), width=140)
-title_col.header("FCDT Postgraduate Assistant")
-st.selectbox("Programme", PROG_KEYS, key="programme", format_func=lambda k: PROG_LABEL[k])
+render_header()
+st.selectbox("Programme", PROG_KEYS, key="programme_selector", format_func=lambda k: PROG_LABEL[k],
+             on_change=select_programme)
+
+
+# ---------------- Voice input ---------------- #
+answering = PROG_LABEL[ss.programme] if ss.programme != "ANY" else "any programme"
+st.caption(f"Answering for: **{answering}**")
+with st.expander("🎤 Ask by voice"):
+    audio = st.audio_input("Record a question", key=f"voice-{ss.voice_key}")
+    if audio is not None:
+        wav = audio.getvalue()
+        digest = hashlib.md5(wav).hexdigest()
+        if digest != ss.voice_digest:            # transcribe each new clip once
+            ss.voice_digest = digest
+            with st.spinner("Transcribing…"):
+                ss.voice_text, ss.voice_error = speech.transcribe(wav)
+    if ss.voice_error:
+        st.warning(ss.voice_error)
+    if ss.voice_text:
+        st.text_input("Transcript — check and edit before sending", value=ss.voice_text, key="voice_edit")
+        c1, c2 = st.columns(2)
+        c1.button("Send question", type="primary", use_container_width=True, on_click=send_voice)
+        c2.button("Discard", use_container_width=True, on_click=discard_voice)
 
 
 # ---------------- Chat history ---------------- #
 if not ss.history:
-    st.info("Ask a question below, or try one of these:")
+    st.markdown("#### How can I help?")
+    st.caption("Choose a programme, then type or record your question.")
     cols = st.columns(3)
     for col, q in zip(cols, ["What are the entry requirements?", "How long is the programme?",
                              "What subjects will I study?"]):
-        col.button(q, use_container_width=True, on_click=submit, args=(q,))
+        col.button(q, type="primary" if q == "What are the entry requirements?" else "secondary",
+                   use_container_width=True, on_click=submit, args=(q,))
 
 last_assistant = max((i for i, m in enumerate(ss.history) if m["role"] == "assistant"), default=-1)
 for i, m in enumerate(ss.history):
-    with st.chat_message(m["role"]):
+    with st.chat_message(m["role"], avatar=":material/person:" if m["role"] == "user" else ":material/smart_toy:"):
         if m["role"] == "user":
             st.markdown(m["content"])
             continue
@@ -218,7 +240,7 @@ for i, m in enumerate(ss.history):
             cols = st.columns(min(len(m["options"]), 3))
             for j, opt in enumerate(m["options"]):
                 cols[j % len(cols)].button(opt["label"], key=f"opt-{i}-{j}", use_container_width=True,
-                                           on_click=on_option, args=(opt, m["origin"]))
+                                           on_click=on_option, args=(opt, m["origin"], i))
         if ss.debug and m.get("debug"):
             d = m["debug"]
             with st.expander("Retrieval details"):
@@ -229,23 +251,3 @@ for i, m in enumerate(ss.history):
                     st.caption("Text: " + text + "…")
         elif ss.debug and m["role"] == "assistant":
             st.caption(f"Intent: {m['intent']} (rule-based handler, no ranking shown)")
-
-# ---------------- Voice input ---------------- #
-answering = PROG_LABEL[ss.programme] if ss.programme != "ANY" else "any programme"
-st.caption(f"Answering for: **{answering}**")
-with st.expander("🎤 Ask by voice"):
-    audio = st.audio_input("Record a question", key=f"voice-{ss.voice_key}")
-    if audio is not None:
-        wav = audio.getvalue()
-        digest = hashlib.md5(wav).hexdigest()
-        if digest != ss.voice_digest:            # transcribe each new clip once
-            ss.voice_digest = digest
-            with st.spinner("Transcribing…"):
-                ss.voice_text, ss.voice_error = speech.transcribe(wav)
-    if ss.voice_error:
-        st.warning(ss.voice_error)
-    if ss.voice_text:
-        st.text_input("Transcript — check and edit before sending", value=ss.voice_text, key="voice_edit")
-        c1, c2 = st.columns(2)
-        c1.button("Send question", type="primary", use_container_width=True, on_click=send_voice)
-        c2.button("Discard", use_container_width=True, on_click=discard_voice)

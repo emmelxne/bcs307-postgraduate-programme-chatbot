@@ -1,0 +1,33 @@
+/* Native Streamlit light theme owns colours and controls; only presentation here. */
+[data-testid="stMainBlockContainer"] { max-width: 56rem; padding-top: 5rem; padding-bottom: 7rem; }
+[data-testid="stBottomBlockContainer"] { max-width: 56rem; }
+.brand-header { margin: 0 0 1.25rem; text-align: center; }
+.brand-logos { display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin-bottom: 1.1rem; }
+.brand-logos img { display: block; height: auto; flex-shrink: 0; }
+.help-logo { width: 146px; }
+.faculty-logo { width: 245px; max-height: 90px; padding-left: 1.5rem; border-left: 1px solid #d9dcdf; }
+.brand-header h1 { color: #252a31; font-size: clamp(1.75rem, 3vw, 2.25rem); font-weight: 700; letter-spacing: -.035em; line-height: 1.2; margin: 0 auto .55rem; padding: 0; }
+.brand-header p { color: #59616c; font-size: .92rem; line-height: 1.6; margin: 0; }
+[data-testid="stCaptionContainer"], [data-testid="stCaptionContainer"] p { color: #59616c; }
+[data-testid="stCaptionContainer"] { opacity: 1; }
+[data-testid="stSidebar"] h3 { font-size: 1.15rem; }
+[data-testid="stChatMessage"] { border: 1px solid #e6e7e9; border-radius: 12px; padding: 1.1rem 1.2rem; }
+[data-testid="stChatMessage"]:has([aria-label="Chat message from user"]) { background: #fcf3f4; border-color: #f2e2e5; }
+[data-testid="stChatMessage"]:has([aria-label="Chat message from assistant"]) { background: #ffffff; }
+[data-testid="stChatMessage"]:has([aria-label="Chat message from user"]) [data-testid="stChatMessageAvatarCustom"] { background: #f4dce1; border: 0; }
+[data-testid="stChatMessage"]:has([aria-label="Chat message from assistant"]) [data-testid="stChatMessageAvatarCustom"] { background: #f0f1f2; border: 0; }
+[data-testid="stChatInput"] { border-radius: 10px; box-shadow: 0 3px 16px #252a3108; }
+[data-testid="stChatInputTextArea"]::placeholder { color: #59616c; opacity: 1; }
+@media (max-width: 640px) {
+  [data-testid="stMainBlockContainer"] { padding: 4.5rem 1rem 6.5rem; }
+  .brand-logos { flex-wrap: wrap; gap: .75rem; margin-bottom: 1rem; }
+  .help-logo { width: 108px; }
+  .faculty-logo { width: 188px; max-height: 80px; padding-left: .75rem; }
+  .brand-header h1 { font-size: 1.75rem; max-width: 20ch; }
+  .brand-header p { font-size: .85rem; }
+  [data-testid="stChatMessage"] { padding: .85rem .8rem; }
+}
+@media (max-width: 360px) {
+  .brand-logos { align-items: center; flex-direction: column; }
+  .faculty-logo { border-left: 0; padding-left: 0; }
+}

@@ -1,0 +1,26 @@
+id,category,programme,question,expected_status,expected,keywords,forbidden
+R01,Module credits,MAI_CONV,How many credits is MAI503?,answer,Summary value and blank semester cells,4 credit hours|blank|§15.2|§5.3,40 credit hours
+R02,Module credits,MAI_CONV,How many credit hours does Natural Language Processing carry?,answer,Resolve module name,4 credit hours|blank|§15.2|§5.3,40 credit hours
+R03,Module credits,MAI_CONV,How many credits is MAI506?,answer,Project Report module value,12 credit hours|§15.2,40 credit hours
+R04,Scope,MDS,How many credits is MAI503?,not_found,Not in Data Science and valid AI choices,not listed|AI,40 credit hours
+R05,Scope,MAI_CONV,How many credits is MAI999?,not_found,Unknown code,not listed,40 credit hours
+R06,Ambiguity,MAI_CONV,How many credits is MAI502?,clarify,Duplicated source code,Data Management|Deep Learning,40 credit hours
+R07,Programme credits,MAI_CONV,How many credits do I need to graduate?,answer,Programme total retained,40 credit hours|§15.2,
+R08,Unsupported,MAI_CONV,How long does it take to get to campus from KL Sentral?,not_found,Travel time absent,travel time,1–3 years
+R09,Unsupported,MAI_CONV,Who teaches MAI503?,not_found,Teaching assignment absent,teaching assignment,Semester
+R10,Unsupported,MAI_CONV,What percentage of AI graduates get a job within six months?,not_found,Measured outcome absent,employment rate,will be able to
+R11,Comparison,MAI_CONV,Compare Data Science and Cybersecurity entry requirements,clarify,Two supported choices and scoped follow-up,Data Science|Cybersecurity,2.75
+R12,Comparison,MDS,Compare Data Science and Cybersecurity entry requirements,clarify,No silent use of selected programme,Data Science|Cybersecurity,2.75
+R13,Admissions,MCS,Can I join the Cybersecurity master if my degree is not in computing?,answer,Conditional non-Computing routes and notes,2.00|rigorous assessment|prerequisite|MCS107|MCS110|§7.3,2.75
+R14,Withdrawal,MAI_CONV,"If I leave in week 3, will I get my deposit back?",answer,After two weeks rule and deposit conditions,NOT be given any refund|outstanding fees|RM20.00|§10.6,50%
+R15,Withdrawal,MAI_CONV,What if I drop one subject after one week?,answer,Subject withdrawal rule,No refund|Registry|approval|§10.5,50%
+R16,Withdrawal,MAI_CONV,Can I get a refund if I withdraw from the programme after one week?,answer,Within two weeks,50%|resource fee|§10.6,more than two weeks
+R17,Withdrawal,MAI_CONV,Can I get a refund if I withdraw from the programme after three weeks?,answer,After two weeks,NOT be given any refund|outstanding fees|§10.6,50%
+R18,Withdrawal,MAI_CONV,If I withdraw from the programme 21 days after commencement can I get a refund?,answer,After two weeks,NOT be given any refund|outstanding fees|§10.6,50%
+R19,Withdrawal,MAI_CONV,Can I withdraw from the programme?,clarify,Ask for timing,commencement|enrolment,50%
+R20,Withdrawal,MAI_CONV,Can I withdraw after one week?,clarify,Ask for type,subject|whole programme,50%
+R21,Withdrawal,MAI_CONV,Can I leave the programme 21 days after my application?,clarify,Unknown timing reference,commencement|enrolment,50%
+R22,PhD,PHD_CS,My lecturer says I can enter the PhD directly with a First Class bachelor's degree. Is that allowed?,answer,Handbook rule and confirmation of contrary guidance,no direct entry|convert|faculty confirmation|§7.5,
+R23,Module credits,MAI_CONV,How many credits is Quantum Computing?,not_found,Unknown named module,not listed,40 credit hours
+R24,Duration,MAI_CONV,How long is MAI503?,not_found,Module duration is not degree duration,requested duration,1–3 years
+R25,Duration,MAI_CONV,How long does it take to renew a library card?,not_found,Unrelated duration not degree duration,requested duration,1–3 years

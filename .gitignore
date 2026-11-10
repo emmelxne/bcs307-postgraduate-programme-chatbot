@@ -8,3 +8,12 @@ venv/
 .ipynb_checkpoints/
 .chat_history.json
 
+# Local review evidence, loose screenshots and private configuration
+.env.*
+*.pem
+*.key
+desktop.ini
+/review-integration/
+/review-ui/
+/Screenshot*.png
+/image.png

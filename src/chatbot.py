@@ -31,7 +31,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 sys.path.insert(0, str(Path(__file__).parent))
 from preprocess import expand_query  # noqa: E402
 from programmes import (DEFAULT_PROGRAMME, PROGRAMMES, SHORT, detect_in_query,  # noqa: E402
-                        detect_load, fix_typos, is_undergraduate_request)
+                        detect_load, fix_typos, is_comparison, is_undergraduate_request)
 from retriever import Retriever  # noqa: E402
 
 NOT_FOUND = "The requested information was not found in the available programme documents."
@@ -133,6 +133,18 @@ class Chatbot:
 
         # ---------------- programme resolution ----------------
         named = detect_in_query(q)
+        intent = self._intent(ql)
+        # Unqualified AI and PhD names leave the variant ambiguous. Explicit
+        # comparisons must never silently inherit the selected programme.
+        ambiguous_family = named in ({"MAI_CONV", "MAI_ODL"}, {"PHD_COMP", "PHD_CS"})
+        comparison = is_comparison(ql)
+        if len(named) > 1 and (comparison or not ambiguous_family):
+            followup = {"admission": "What are the entry requirements?", "duration": "How long is the programme?",
+                        "credits": "How many credits are required?", "subjects": "What subjects will I study?",
+                        "electives": "What are the electives?"}.get(intent, "Tell me about the programme")
+            return Answer("clarify", "I can show one programme at a time. Which would you like to see first?",
+                          options=[{"label": SHORT[p], "action": "set_programme", "value": p,
+                                    "question": followup} for p in sorted(named)], intent=intent)
         if named and programme and programme not in named and not keep_programme:
             targets = sorted(named)
             names = " / ".join(PROGRAMMES[t] for t in targets)
@@ -141,21 +153,26 @@ class Chatbot:
             return Answer("switch", f"You're viewing **{PROGRAMMES[programme]}**. Your question is about "
                                     f"**{names}**. Switch programme?", options=opts, programme=programme)
         if keep_programme and programme:
-            scope = {programme}
+            return Answer("meta", f"Keeping **{PROGRAMMES[programme]}** selected. Please ask a new question about this programme.",
+                          programme=programme)
         elif programme:
             scope = {programme}
         else:
             scope = named
 
-        intent = self._intent(ql)
-        programme_specific = intent in {"overview", "duration", "credits", "subjects", "electives", "module_semester",
+        prog = next(iter(scope)) if len(scope) == 1 else None
+        fact = self._requested_fact(ql)
+        if fact:
+            ans = self._answer_fact(q, scope, fact)
+            ans.programme = prog
+            return ans
+        programme_specific = intent in {"overview", "duration", "credits", "module_credits", "module_lookup", "subjects", "electives", "module_semester",
                                         "admission", "internship", "hours"}
         if programme_specific and len(scope) != 1:
             choices = sorted(scope) if scope else list(PROGRAMMES)
             return Answer("clarify", "Which programme do you mean?", intent=intent,
                           options=[{"label": SHORT[c], "action": "set_programme", "value": c} for c in choices])
 
-        prog = next(iter(scope)) if len(scope) == 1 else None
         handler = getattr(self, f"_h_{intent}", None)
         ans = handler(q, ql, prog, scope) if handler else None
         if ans is None:
@@ -253,7 +270,7 @@ class Chatbot:
                 return "overview"
         if re.search(r"^tell me (more )?about\b", ql):
             return "overview"
-        if re.search(r"withdraw|refund|money back|drop out|\bquit\b|discontinue", ql):
+        if re.search(r"withdraw|refund|money back|deposit.*back|drop out|\bquit\b|discontinue|\bleave\b|\bdrop\b.*\b(subject|module|course|class)\b", ql):
             return "refund"
         if re.search(r"\bfees?\b|\bcosts?\b|\bprice\b|tuition|how much (is|does|do|will)|\bpay\b", ql):
             return "fee"
@@ -264,12 +281,19 @@ class Chatbot:
         if re.search(r"\bhours?\b", ql) and not re.search(r"credit hours?", ql) and \
                 re.search(r"class|teaching|lecture|contact|study|per week|weekly|each (course|subject|module)|a week", ql):
             return "hours"
+        if re.search(r"\bcredits?\b", ql) and (self._find_module(ql) or
+                re.search(r"\b[a-z]{2,5}\d{3}\b|\b(module|subject)\b", ql) or
+                (re.search(r"credits?(?: hours?)?\s+(?:is|does|for)\b|\b(?:carry|worth)\b", ql)
+                 and not re.search(r"programme|program|degree|master|graduate|graduation|\btotal\b", ql)
+                 and not detect_in_query(ql))):
+            return "module_credits"
         if re.search(r"how long|duration|how many (years|months)|\byears? (to|does|will|is)|length of|finish the", ql):
             return "duration"
         if re.search(r"how many credit|credits? (are |is )?(required|needed)|total credit|credit hours (required|needed)|"
                      r"credits? to graduate", ql):
             return "credits"
-        if re.search(r"(which|what) semester|when (do|will|can|should) (i|we) (take|study|do)", ql):
+        if re.search(r"(which|what) semester|when (do|will|can|should) (i|we) (take|study|do)", ql) or \
+                (self._module_codes(ql) and re.search(r"\bsemesters?\b", ql)):
             return "module_semester"
         if re.search(r"\belectives?\b|optional (module|subject)", ql):
             return "electives"
@@ -279,9 +303,60 @@ class Chatbot:
         if re.search(r"\bfail|retake|resit|re-?sit|\bredo\b|repeat (a|the) (module|subject)", ql):
             return "fail"
         if re.search(r"entry|\benter\b|directly|admission|requirement|eligib|qualif|\bapply\b|cgpa|get in|accepted|muet|ielts|cefr|"
-                     r"english (test|requirement|result|score|proficiency)|non[- ]?computing", ql):
+                     r"english (test|requirement|result|score|proficiency)|non[- ]?computing|not (?:in |a )?computing|"
+                     r"degree.*(?:different field|unrelated)|\bjoin\b", ql):
             return "admission"
+        if self._module_codes(ql):
+            return "module_lookup"
         return "general"
+
+    def _requested_fact(self, ql):
+        """Field constraints take precedence over broad duration / general retrieval.
+
+        Similarity to a programme or module is insufficient evidence for a
+        journey duration, teaching assignment, or measured employment outcome.
+        """
+        if re.search(r"(?:how long|duration|time).*\b(?:get to|travel|commut|journey|reach)|travel time|commut.*time", ql):
+            return "travel time"
+        if re.search(r"who.*\b(?:teach|teaches|teaching|lectur|instruct)|(?:module|subject|course).*\b(?:lecturer|instructor)|"
+                     r"(?:lecturer|instructor).*(?:for|of|mai|mds|mcs)", ql):
+            return "module teaching assignment"
+        if re.search(r"(?:employment|employed|employability|placement|graduates?.*(?:job|work)).*(?:rate|percent|%|proportion)|"
+                     r"(?:rate|percent|%|proportion).*graduates?|employment rate", ql):
+            return "graduate employment rate"
+        return None
+
+    def _answer_fact(self, q, scope, fact):
+        hits = self.r.search(q, k=6, method=self.method, scope=scope or None)
+        # Require the requested relationship in a single source unit. These are
+        # evidence constraints, not a change to the global similarity threshold.
+        patterns = {
+            "travel time": r"(?:travel|journey|commut|from .+ to).*(?:\d+|one|two|three)\s*(?:minutes?|hours?)",
+            "module teaching assignment": r"(?:taught|lectured|instructed) by|(?:lecturer|instructor)\s*:",
+            "graduate employment rate": r"(?:\d+(?:\.\d+)?\s*%|\d+(?:\.\d+)?\s*percent).*(?:employ|job)|(?:employ|job).*\d+(?:\.\d+)?\s*(?:%|percent)",
+        }
+        supported = []
+        for h in hits:
+            units = [u for u in h.chunk["units"] if re.search(patterns[fact], u, re.I)]
+            # A lecturer named elsewhere is not a module assignment. A journey
+            # must match its origin; an outcome must match a requested timeframe.
+            code = re.search(r"\b[a-z]{2,5}\d{3}\b", q, re.I)
+            if fact == "module teaching assignment" and code:
+                units = [u for u in units if code[0].lower() in u.lower()]
+            if fact == "travel time":
+                origin = re.search(r"\bfrom (.+?)(?:\?|$| to )", q, re.I)
+                units = [u for u in units if origin and origin[1].strip().lower() in u.lower()]
+            if fact == "graduate employment rate":
+                period = re.search(r"(?:within|after) (.+? (?:months?|years?))", q, re.I)
+                if period:
+                    units = [u for u in units if period[1].lower() in u.lower()]
+            if units and h.tfidf >= MIN_TFIDF and self.r.term_coverage(q, [h]) >= MIN_COVERAGE:
+                supported.extend((u, cite(h.chunk["section"])) for u in units)
+        if supported:
+            return Answer("answer", supported[0][0], [u for u, _ in supported[1:]],
+                          list(dict.fromkeys(s for _, s in supported)), intent="fact")
+        return Answer("not_found", f"Information not available: the handbook does not state the requested {fact}.",
+                      intent="fact", hits=hits)
 
     # ================= 3. topic handlers ============================== #
     def _chunks(self, prog, topic=None, load=None):
@@ -298,6 +373,13 @@ class Chatbot:
                                                    "What are the entry requirements?"]])
 
     def _h_duration(self, q, ql, prog, scope):
+        programme_context = re.search(r"programme|program|master|phd|degree|stud(?:y|ying|ies)|working|"
+                                      r"full[- ]?time|part[- ]?time|finish|complete", ql)
+        bare_duration = re.fullmatch(r"(?:how long (?:is it|does it take|will it take)|"
+                                     r"what is the duration|how many (?:years|months)(?: does it take)?)\??", ql)
+        if (self._find_module(ql) and not re.search(r"programme|program|master|degree", ql)) or not (programme_context or bare_duration):
+            return Answer("not_found", "Information not available: the handbook does not state the requested duration. "
+                          "The programme's study duration does not establish that fact.", intent="duration")
         rows = {}
         for c in self._chunks(prog, "structure"):
             yr = years_range(" ".join(c["units"]))
@@ -312,6 +394,92 @@ class Chatbot:
                    .replace("minimum 1 years", "minimum 1 year") for l in loads]
         return Answer("answer", f"The **{PROGRAMMES[prog]}** takes " + " or ".join(parts) + ".",
                       details, [cite(rows[l][1]) for l in loads], intent="duration")
+
+    @staticmethod
+    def _module_codes(text):
+        return list(dict.fromkeys(re.findall(r"\b[a-z]{2,5}\d{3}\b", text.upper(), re.I)))
+
+    @staticmethod
+    def _parse_module_row(unit, section, load=None, table="structure"):
+        f = fields(unit)
+        name = f.get("Subject Name") or f.get("Name of Course")
+        if not name:
+            return None
+        return {"semester": f.get("Semester") or f.get("Semester / Year Offered", ""),
+                "code": f.get("Subject Code") or f.get("Code", ""), "name": name,
+                "cls": f.get("Classification", ""), "credits": f.get("Credit Hours") or f.get("Credit", ""),
+                "section": section, "load": load, "table": table}
+
+    def _module_rows(self, prog, load=None):
+        return [row for c in self._chunks(prog) if c["topic"] in {"structure", "structure_summary"}
+                and (not load or not c.get("load") or c["load"] == load)
+                for u in c["units"]
+                if (row := self._parse_module_row(u, c["section"], c.get("load"), c["topic"]))]
+
+    def _match_module_rows(self, text, rows):
+        """Resolve explicit codes first, then longest names / aliases. Keep all
+        matches so duplicated codes in the source produce a clarification.
+        """
+        t = text.lower()
+        codes = self._module_codes(text)
+        names = [r["name"].lower() for r in rows if r["name"].lower() in t]
+        name = max(names, key=len) if names else None
+        if codes:
+            return [r for r in rows if r["code"].upper() == codes[0] and
+                    (not name or r["name"].lower() == name)]
+        if name:
+            return [r for r in rows if r["name"].lower() == name]
+        for alias, target in sorted(MODULE_ALIASES.items(), key=lambda kv: -len(kv[0])):
+            if re.search(rf"\b{re.escape(alias)}\b", t):
+                return [r for r in rows if target in r["name"].lower()]
+        return []
+
+    def _resolve_module(self, q, prog):
+        codes = self._module_codes(q)
+        if len(codes) > 1:
+            return [], Answer("clarify", "Which single module code do you mean? Please ask about one module at a time.")
+        available = self._module_rows(prog, detect_load(q))
+        rows = self._match_module_rows(q, available)
+        if not rows:
+            choices = [p for p in PROGRAMMES if p != prog and
+                       self._match_module_rows(q, self._module_rows(p, detect_load(q)))]
+            requested = codes[0] if codes else "The requested module"
+            guidance = "Please check the module code or name." + (" You can also choose a listed programme below." if choices else "")
+            return [], Answer("not_found", f"{requested} is not listed in the applicable {PROGRAMMES[prog]} structure or summary. {guidance}",
+                              sources=list(dict.fromkeys(cite(r["section"]) for r in available)),
+                              options=[{"label": SHORT[p], "action": "set_programme", "value": p} for p in choices])
+        names = sorted({r["name"] for r in rows})
+        if len(names) > 1:
+            code = rows[0]["code"]
+            return [], Answer("clarify", f"The handbook uses {code} for more than one module in {PROGRAMMES[prog]}. Which module do you mean?",
+                              sources=list(dict.fromkeys(cite(r["section"]) for r in rows)),
+                              options=[{"label": n, "action": "ask", "value": q + " — " + n} for n in names])
+        return rows, None
+
+    def _h_module_lookup(self, q, ql, prog, scope):
+        rows, issue = self._resolve_module(q, prog)
+        if issue:
+            return issue
+        module = f"{rows[0]['code']} {rows[0]['name']}"
+        return Answer("clarify", f"What would you like to know about **{module}** in the {PROGRAMMES[prog]}?",
+                      sources=list(dict.fromkeys(cite(r["section"]) for r in rows)),
+                      options=[{"label": "Semester", "action": "ask", "value": f"Which semester is {module}?"},
+                               {"label": "Credits", "action": "ask", "value": f"How many credits is {module}?"}])
+
+    def _h_module_credits(self, q, ql, prog, scope):
+        rows, issue = self._resolve_module(q, prog)
+        if issue:
+            return issue
+        details = []
+        for r in rows:
+            table = "Summary table" if r["table"] == "structure_summary" else f"{r['load'].capitalize()} semester table"
+            value = f"{r['credits']} credit hours" if r["credits"] else "the credit cell is blank (not zero credits)"
+            detail = f"{table} ({cite(r['section']).split(' ')[0]}): {r['code']} {r['name']} — {value}."
+            if detail not in details:
+                details.append(detail)
+        status = "answer" if any(r["credits"] for r in rows) else "not_found"
+        return Answer(status, f"Module credit information for **{rows[0]['name']}** in the **{PROGRAMMES[prog]}**:",
+                      details, list(dict.fromkeys(cite(r["section"]) for r in rows)), intent="module_credits")
 
     def _h_credits(self, q, ql, prog, scope):
         for c in self._chunks(prog, "structure_summary"):
@@ -328,13 +496,9 @@ class Chatbot:
         rows, section = [], chunks[0]["section"] if chunks else ""
         for c in chunks:
             for u in c["units"]:
-                f = fields(u)
-                name = f.get("Subject Name") or f.get("Name of Course")
-                if name:
-                    rows.append({"semester": f.get("Semester") or f.get("Semester / Year Offered", ""),
-                                 "code": f.get("Subject Code") or f.get("Code", ""), "name": name,
-                                 "cls": f.get("Classification", ""), "credits": f.get("Credit Hours") or f.get("Credit", ""),
-                                 "section": c["section"]})
+                row = self._parse_module_row(u, c["section"], c.get("load"), c["topic"])
+                if row:
+                    rows.append(row)
         return rows, section
 
     def _summary_credits(self, prog, code, name):
@@ -408,21 +572,18 @@ class Chatbot:
         return None
 
     def _h_module_semester(self, q, ql, prog, scope):
-        mod = self._find_module(ql)
-        if not mod:
-            return None
-        loads = [detect_load(q)] if detect_load(q) else ["full time", "part time"]
+        rows, issue = self._resolve_module(q, prog)
+        if issue:
+            return issue
         details, sources = [], []
-        for load in loads:
-            rows, section = self._structure_rows(prog, load)
-            for r in rows:
-                if r["name"] == mod[1]:
-                    details.append(f"{load.capitalize()}: {r['semester']} ({r['cls']})")
-                    sources.append(cite(r["section"]))
+        for r in rows:
+            if r["table"] == "structure" and r["semester"]:
+                details.append(f"{r['load'].capitalize()}: {r['semester']} ({r['cls']})")
+                sources.append(cite(r["section"]))
         if not details:
-            return Answer("not_found", f"{mod[0]} {mod[1]} is not listed in the {PROGRAMMES[prog]} structure.",
+            return Answer("not_found", f"The semester for {rows[0]['name']} is not listed in the {PROGRAMMES[prog]} structure.",
                           intent="module_semester")
-        return Answer("answer", f"**{mod[0]} {mod[1]}** in the {PROGRAMMES[prog]}:", details,
+        return Answer("answer", f"**{rows[0]['code']} {rows[0]['name']}** in the {PROGRAMMES[prog]}:", list(dict.fromkeys(details)),
                       list(dict.fromkeys(sources)), intent="module_semester")
 
     def _h_admission(self, q, ql, prog, scope):
@@ -432,13 +593,23 @@ class Chatbot:
         units = [u for c in chunks for u in c["units"]]
         src = [cite(chunks[0]["section"])]
         name = PROGRAMMES[prog]
+        direct = [u for u in units if "no direct entry" in u.lower()]
+        if direct and re.search(r"direct|straight|bachelor|first class|lecturer", ql):
+            details = [u for u in units if "convert their candidacy" in u]
+            if re.search(r"lecturer|told|advis|guidance", ql):
+                details.append("Any differing lecturer guidance needs faculty confirmation for this programme and intake. "
+                               "An exception is not documented in the available handbook.")
+            return Answer("answer", f"For the **{name}**, the handbook states: {direct[0]}", details, src, intent="admission")
         if re.search(r"english|muet|ielts|cefr|toefl|international", ql) and not re.search(r"cgpa|degree", ql):
             sel = [u for u in units if re.search(r"MUET|CEFR|IELTS|English", u) and "Requirement (" not in u]
             return Answer("answer", f"English requirement for international applicants to the **{name}**:",
                           sel, src, intent="admission")
-        if re.search(r"non[- ]?computing|not (a )?computing|different field|unrelated|business|arts|accounting", ql):
-            sel = [u for u in units if re.search(r"non-|without a Computing|prerequisite|APEL", u)]
-            return Answer("answer", f"Routes for applicants **without a Computing degree** — {name}:",
+        if re.search(r"non[- ]?computing|not (?:in |a )?computing|different field|unrelated|business|arts|accounting", ql):
+            sel = [u for u in units if re.search(r"non-Computing|without a Computing|prerequisite|re-assessed|^Rigorous assessment", u)]
+            if not sel:
+                return Answer("not_found", f"A non-Computing entry route is not stated for the {name}.", sources=src, intent="admission")
+            return Answer("answer", f"Conditional routes for applicants **without a Computing degree** — {name}. "
+                          "Admission is subject to the applicable route and conditions below:",
                           sel, src, intent="admission")
         routes = [u for u in units if re.match(r"^([ivx]+\.|-|A Master|Candidates must)", u) or "Bachelor" in u
                   or "APEL" in u]
@@ -476,36 +647,53 @@ class Chatbot:
         return None, None
 
     def _h_refund(self, q, ql, prog, scope):
-        if re.search(r"\b(subject|module|course|class)\b", ql) and not re.search(r"programme|program|university|degree|master", ql):
+        subject = re.search(r"(?:drop|withdraw).*\b(subject|module|class)\b|\b(subject|module)\b.*withdraw|drop (?:one|a|the|my) course", ql)
+        if subject:
             u1, s = self._unit("10.5", r"No refund")
             u2, _ = self._unit("10.5", r"write officially")
-            return Answer("answer", f"Withdrawing from a **subject**: {u1}", [u2], [s], intent="refund")
+            u3, _ = self._unit("10.5", r"approval of Management")
+            return Answer("answer", f"Withdrawing from a **subject**: {u1}", [u2, u3], [s], intent="refund")
+        if not re.search(r"programme|program|university|degree|master|\bquit\b|\bleave\b|drop out|discontinue", ql):
+            return Answer("clarify", "Are you withdrawing from one subject or from the whole programme?", intent="refund",
+                          options=[{"label": "One subject", "action": "ask", "value": q + " — withdrawing from one subject"},
+                                   {"label": "Whole programme", "action": "ask", "value": q + " — withdrawing from the programme"}])
         rules = {k: self._unit("10.6", p) for k, p in {
             "before": r"before the commencement date", "within": r"within two weeks",
             "after": r"more than two weeks", "noshow": r"does not attend class for one month"}.items()}
         src = [rules["after"][1]]
         days = None
-        m = re.search(r"(\d+|one|two|three|four|five|six|a|an)\s*(day|week|month)s?", ql)
+        number = r"\d+|one|two|three|four|five|six|a|an"
+        m = re.search(rf"({number})\s*(day|week|month)s?\b", ql)
+        week = re.search(rf"\b(?:in |during )?week\s+({number})\b", ql)
+        if re.search(r"(?:after|since|from).*(?:application|applying|offer|payment|deposit paid)", ql) and not re.search(r"commencement|enrolment|enrollment|start", ql):
+            return Answer("clarify", "How far is the withdrawal from the programme's commencement or enrolment date? "
+                          "The refund timing is measured from that date, rather than an application, offer or payment.",
+                          sources=src, intent="refund")
         if re.search(r"before (it |the programme |classes |the semester )?(start|begin|commenc)", ql):
             days = -1
-        elif m:
-            n = {"one": 1, "a": 1, "an": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6}.get(m.group(1), None)
-            n = int(m.group(1)) if n is None else n
-            days = n * {"day": 1, "week": 7, "month": 30}[m.group(2)]
+        elif m or week:
+            match = m or week
+            n = {"one": 1, "a": 1, "an": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6}.get(match.group(1))
+            n = int(match.group(1)) if n is None else n
+            # In week 3 is beyond the first two weeks; do not treat it as
+            # an unspecified time or apply the within-two-weeks rule.
+            days = n * {"day": 1, "week": 7, "month": 30}[m.group(2)] if m else (n - 1) * 7 + 1
         if days is None:
-            details = [f"Before the programme starts: {rules['before'][0]}",
-                       f"Within two weeks of starting: {rules['within'][0]}",
-                       f"More than two weeks after starting: {rules['after'][0]}",
-                       f"Not attending for one month: {rules['noshow'][0]}"]
-            return Answer("answer", "The refund depends on **when** you withdraw from the programme "
-                                    "(tell me the timing for the exact rule):", details, src, intent="refund")
+            return Answer("clarify", "When would you withdraw from the programme, relative to its commencement or enrolment date? "
+                          "Please specify before it starts, a week number, or the number of days or weeks after it starts.",
+                          sources=src, intent="refund")
         if days < 0:
             lead, extra = rules["before"][0], []
         elif days <= 14:
             lead, extra = rules["within"][0], []
         else:
-            lead, extra = rules["after"][0], ([rules["noshow"][0]] if days >= 30 else [])
-        when = "before the programme starts" if days < 0 else f"after {m.group(0)}"
+            lead, extra = rules["after"][0], []
+        if re.search(r"not attend|no.show|stop attending", ql) and days >= 30:
+            lead, extra = rules["noshow"][0], []
+        deposit_note, _ = self._unit("10.6", r"failure to return the HELP Student Identification Card")
+        extra.append(deposit_note)
+        when = "before the programme starts" if days < 0 else (f"in week {week.group(1)}" if week else f"after {m.group(0)}")
+        extra.append("Timing above is relative to programme commencement or enrolment.")
         return Answer("answer", f"Withdrawing from the programme {when}: {lead}", extra, src, intent="refund")
 
     def _h_fee(self, q, ql, prog, scope):

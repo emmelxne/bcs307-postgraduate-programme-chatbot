@@ -25,8 +25,16 @@ python src/chatbot.py              # (optional) command-line chat
 Python 3.10 or newer is required.
 
 ### Chat history
-The sidebar lists previous chats (titled by their first question) with **➕ New chat** and **✕** to delete.
-Chats are saved to `.chat_history.json` in the project folder on this computer only (ignored by git).
+The sidebar lists previous chats (titled by their first question) with **New chat** and **✕** to delete.
+Chats are kept in `st.session_state` within the current browser session. New Chat, opening chats,
+and deleting chats operate only on that session. A new independent session starts empty;
+chat history is not loaded from or written to `.chat_history.json`.
+
+### Interface
+The interface uses Streamlit’s light theme with a white background, charcoal text, a neutral sidebar
+and HELP-red controls. The centred header uses separate local HELP and FCDT logo cutouts from the
+supplied screenshot, without redrawing or recolouring them. It adapts to desktop and phone widths.
+Programme selection, the active scope and voice input appear above the chat; typed input stays at the bottom.
 
 ### Voice input (optional extension)
 Open **🎤 Ask by voice**, record, check/edit the transcript, then **Send question**. The transcript goes
@@ -51,11 +59,13 @@ src/chatbot.py       response states, programme routing, topic handlers, extract
 src/speech.py        speech-to-text adapter for voice questions
 src/evaluate.py      runs test sets, labels outcomes, writes results/
 app.py               Streamlit interface
+ui.py                local branding and presentation helpers
+.streamlit/config.toml native light theme
+assets/              local HELP/FCDT logos and minimal responsive CSS
 tests/               test_questions.csv (dev, 24), heldout_questions.csv (15),
-                     audit_questions.csv (31 browser-audit cases); add final_questions.csv yourselves
+                     audit_questions.csv (31), correctness_regressions.csv (25),
+                     test_correctness.py, final_manual_questions.csv (18 fresh, unrun)
 results/             per-question CSVs + summary.md
-docs/TEAM_PLAN.md    task split and GitHub workflow
-docs/CHANGES.md      what changed after the browser audit, and why
 ```
 
 ## NLP methods (summary)
@@ -89,6 +99,10 @@ docs/CHANGES.md      what changed after the browser audit, and why
 | Hybrid (TF-IDF + BM25) | 100 % | 80 % | 100 % |
 
 TF-IDF matched or beat every other method on every test set, so the simplest method is used in the app.
+The table above records the pre-trial results. The local correctness trial retains 24/24 development
+and 31/31 audit with TF-IDF, and reaches 13/15 on the older held-out set by abstaining on unsupported
+employment statistics. These are automated keyword/status results, not a fresh manual assessment score.
+The two remaining older held-out misses concern study-load switching and the counselling phone number.
 Dev was used to build the rules and audit cases drove the fixes, so only the held-out column is close to an unbiased estimate.
 A semantic-search variant (all-MiniLM-L6-v2 sentence embeddings, alone and combined with TF-IDF/BM25) was also tested:
 87 % held-out (one extra question: "phone number for counselling"), but semantic-only missed an exact-term question,
@@ -102,8 +116,16 @@ answers manually (`manual_verdict` column).** Keyword checks alone can pass an a
 - Keyword-based: misses paraphrases whose words don't appear in the handbook
   (held-out: "switch from full time to part time", "phone number for counselling").
 - Rule-based routing covers the question types seen in testing; new phrasings may fall back to general retrieval.
-- One unsupported answer remains (graduate employment rate → programme aims).
+- Measured employment rates, travel times, and module teaching assignments are not stated in the handbook;
+  similarity to programme aims, duration, or a timetable is not evidence for those facts.
 - The handbook has inconsistencies (MAI502 used for two modules; MDS/MAI codes differ between tables;
   MAI503 credits blank in the semester table but 4 in the summary). The bot shows both rather than guessing.
 - PhD direct entry: the handbook says no direct entry from Bachelor's; confirm with the lecturer if told otherwise.
 - Voice accuracy depends on the microphone, accent and noise; the live microphone path must be tested on the demo laptop.
+
+### Local correctness regressions
+
+Run `python -B -m unittest discover -s tests -p test_correctness.py -v` for the focused CSV
+regressions and source/programme invariants. The original evaluator remains `python src/evaluate.py`.
+`tests/final_manual_questions.csv` contains 18 fresh, unrun questions reserved for final manual
+assessment; they are deliberately separate from the evaluator's development and regression sets.
