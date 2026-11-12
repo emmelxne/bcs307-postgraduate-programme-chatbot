@@ -33,6 +33,15 @@ class CorrectnessTests(unittest.TestCase):
                     if ans.status == 'answer':
                         self.assertTrue(ans.sources)
 
+    def test_accommodation_refers_to_official_page(self):
+        official = 'https://university.help.edu.my/campus-life/accommodation/'
+        for q in ['What is the hostel fee?', 'Is there campus accommodation?', 'housing options']:
+            with self.subTest(question=q):
+                ans = self.bot.ask(q)
+                self.assertIn(official, ans.text)
+                self.assertNotIn('living-lifestyle', ans.text)
+                self.assertTrue(any('§18.3' in s for s in ans.sources))
+
     def test_credit_values_come_from_source_rows(self):
         r = copy.copy(self.r)
         r.chunks = copy.deepcopy(self.r.chunks)

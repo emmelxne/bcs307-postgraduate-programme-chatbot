@@ -36,6 +36,8 @@ from retriever import Retriever  # noqa: E402
 
 NOT_FOUND = "The requested information was not found in the available programme documents."
 CONTACT = "HELP University (Tel: 03-7849 3000 | Email: marketing@help.edu.my)"
+OFFICIAL_ACCOMMODATION_URL = "https://university.help.edu.my/campus-life/accommodation/"
+OUTDATED_ACCOMMODATION_URL = "http://www.help.edu.my/living-lifestyle/campus-accommodation.html"
 EXAMPLES = "entry requirements, modules, credits, study duration, grading or refunds"
 
 MIN_TFIDF = 0.08      # answerability gate (tuned on the development set)
@@ -123,6 +125,14 @@ class Chatbot:
             keep_programme: bool = False) -> Answer:
         """programme: selected programme key, or None for 'Any programme'.
         keep_programme: user chose to stay on the selected programme after a switch prompt."""
+        ans = self._ask(question, programme, keep_programme)
+        # The handbook (§18.3) still quotes an outdated accommodation page. Cite the
+        # handbook as before, but refer students to the current official page.
+        ans.lead = ans.lead.replace(OUTDATED_ACCOMMODATION_URL, OFFICIAL_ACCOMMODATION_URL)
+        ans.details = [d.replace(OUTDATED_ACCOMMODATION_URL, OFFICIAL_ACCOMMODATION_URL) for d in ans.details]
+        return ans
+
+    def _ask(self, question: str, programme: str | None, keep_programme: bool) -> Answer:
         q = question.strip()
         ql = fix_typos(q)
 
