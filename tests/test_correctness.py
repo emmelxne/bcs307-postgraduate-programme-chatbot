@@ -42,6 +42,31 @@ class CorrectnessTests(unittest.TestCase):
                 self.assertNotIn('living-lifestyle', ans.text)
                 self.assertTrue(any('§18.3' in s for s in ans.sources))
 
+    def test_no_dangling_table_reference_or_unrelated_detail(self):
+        # The "tables below" lead-in has no tables in the answer, so it is not evidence.
+        for q, p in [('studying while working part time', 'MAI_CONV'),
+                     ('When would I study Applied Programming as a part-time student?', 'MDS')]:
+            with self.subTest(question=q):
+                ans = self.bot.ask(q, programme=p)
+                self.assertNotIn('tables below', ans.text)
+                self.assertNotEqual(ans.status, 'answer')
+        # A loosely related passage from another section must not ride along.
+        for q in ['where can I stay on campus?', 'Where can I stay near the university?']:
+            with self.subTest(question=q):
+                ans = self.bot.ask(q)
+                self.assertEqual(ans.status, 'answer')
+                self.assertEqual(ans.details, [])
+                self.assertTrue(any('§18.3' in s for s in ans.sources))
+                self.assertFalse(any('Dean' in s for s in ans.sources))
+
+    def test_table_row_answers_still_supported(self):
+        ans = self.bot.ask('Which lecturer supervises chatbot projects?')
+        self.assertEqual(ans.status, 'answer')
+        self.assertIn('Naline', ans.text)
+        ans = self.bot.ask('Who is the dean?')
+        self.assertEqual(ans.status, 'answer')
+        self.assertIn('Lee Chee Leong', ans.text)
+
     def test_credit_values_come_from_source_rows(self):
         r = copy.copy(self.r)
         r.chunks = copy.deepcopy(self.r.chunks)

@@ -44,7 +44,7 @@ SYNONYMS = {
     r"\bpart[- ]?time\b": "part time",
     r"\bfull[- ]?time\b": "full time",
     r"\bwithdraw|\bquit\b|\bdrop out\b|\brefund\b": "withdrawal withdraw refund",
-    r"\bhostel\b|\bdorm|\bhousing\b|\blive\b": "accommodation",
+    r"\bhostel\b|\bdorm|\bhousing\b|\blive\b|\bstay(?:ing)? (?:on|at|in|near)\b": "accommodation",
     r"\bvisa\b|\bstudent pass\b|\binternational\b": "international student pass visa issd",
     r"\blibrary\b": "learning resource centre lrc library",
     r"\bportal\b|\bresults?\b": "mypride portal results",

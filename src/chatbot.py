@@ -29,10 +29,10 @@ from pathlib import Path
 from sklearn.metrics.pairwise import cosine_similarity
 
 sys.path.insert(0, str(Path(__file__).parent))
-from preprocess import expand_query  # noqa: E402
+from preprocess import expand_query, normalise, query_concepts  # noqa: E402
 from programmes import (DEFAULT_PROGRAMME, PROGRAMMES, SHORT, detect_in_query,  # noqa: E402
                         detect_load, fix_typos, is_comparison, is_undergraduate_request)
-from retriever import Retriever  # noqa: E402
+from retriever import GENERIC_TERMS, Retriever  # noqa: E402
 
 NOT_FOUND = "The requested information was not found in the available programme documents."
 CONTACT = "HELP University (Tel: 03-7849 3000 | Email: marketing@help.edu.my)"
@@ -54,6 +54,10 @@ MODULE_ALIASES = {
     "dissertation": "dissertation", "thesis": "thesis", "forensics": "digital forensics",
     "ethical hacking": "ethical hacking", "penetration": "ethical hacking",
 }
+# A unit that points at content elsewhere ("the tables below summarise...") is not an
+# answer on its own: the referenced rows are not part of the displayed evidence.
+DANGLING_REF = re.compile(r"\b(?:tables?|figures?|lists?|rows?|following|details|summar\w+)\b[^.;:]{0,60}\b(?:below|above)\b"
+                          r"|\b(?:below|above)\b[^.;]{0,30}\b(?:tables?|figures?|list)\b", re.I)
 # Words that make a short "what is X?" a handbook question rather than general knowledge
 HANDBOOK_TERMS = (r"programme|program|module|subject|course|credit|fee|grade|gpa|cgpa|muet|ielts|cefr|odl|"
                   r"mypride|lrc|issd|apel|helplive|dissertation|project report|thesis|viva|supervisor|"
@@ -766,7 +770,7 @@ class Chatbot:
         if top.tfidf < MIN_TFIDF or coverage < MIN_COVERAGE:
             return Answer("not_found", NOT_FOUND, [f"Please try rephrasing your question, or ask about {EXAMPLES}."],
                           confidence=top.tfidf, coverage=coverage, hits=hits)
-        lines = self._extract(q, hits[:2])
+        lines = self._extract(q, hits[:2], scope=scope or None, load=detect_load(q))
         if not lines:
             return Answer("not_found", NOT_FOUND, confidence=top.tfidf, coverage=coverage, hits=hits)
         (lead, lead_src), rest = lines[0], lines[1:]
@@ -774,21 +778,32 @@ class Chatbot:
         return Answer("answer", lead, [u for u, _ in rest], srcs,
                       confidence=top.tfidf, coverage=coverage, hits=hits)
 
-    def _extract(self, question, hits, max_lines=4):
-        """Rank individual sentences / rows of the top chunks by TF-IDF similarity."""
-        units, owners = [], []
+    def _extract(self, question, hits, max_lines=4, scope=None, load=None):
+        """Rank individual sentences / rows of the top chunks by TF-IDF similarity,
+        then keep only evidence that supports the question (see _supported)."""
+        units, owners, chunks = [], [], []
         for h in hits:
+            cp, cl = set(h.chunk["programmes"]), h.chunk.get("load")
+            if scope and cp and not cp & scope:
+                continue                           # another programme's text
+            if load and cl and cl != load:
+                continue                           # opposite study load
             for u in h.chunk["units"]:
                 if len(u.split()) <= 4 and not u.endswith("."):
                     continue                       # skip heading-like fragments ('Dean', 'Notes')
+                if DANGLING_REF.search(u) and not u.rstrip().endswith(":"):
+                    continue                       # refers to tables/lists that are not shown
                 units.append(u)
                 owners.append(h.chunk["section"])
+                chunks.append(h.chunk)
         if not units:
             return []
         vec = self.r.vectorizer
         sims = cosine_similarity(vec.transform([expand_query(question)]), vec.transform(units)).ravel()
         best = sims.max()
         ranked = [i for i in sims.argsort()[::-1][:max_lines] if sims[i] >= max(0.05, 0.45 * best)]
+        if not ranked:
+            return []
         lead = ranked[0]
         rest = sorted(i for i in ranked[1:])
         out = [(units[lead], owners[lead])]
@@ -796,7 +811,29 @@ class Chatbot:
             out.append((units[i], owners[i]))
             if units[i].rstrip().endswith(":") and i + 1 < len(units):
                 out.append((units[i + 1], owners[i + 1]))
-        return list(dict.fromkeys(out))
+        return self._supported(question, list(dict.fromkeys(out)))
+
+    def _supported(self, question, lines):
+        """Evidence check on the lines that would be displayed.
+
+        Judged on the whole evidence set (each line plus its section heading), not on a
+        single sentence: (1) a line from a different section than the lead must cover
+        every question concept the lead covers, so a loosely related passage cannot
+        ride along; (2) together the lines must cover at least MIN_COVERAGE of the
+        question's content concepts, otherwise nothing is displayed."""
+        concepts = [c for c in query_concepts(question) if not c <= GENERIC_TERMS]
+        if not concepts or not lines:
+            return lines
+
+        def covered(line):
+            toks = set(normalise(f"{line[0]} {line[1]}"))
+            return {i for i, c in enumerate(concepts) if c & toks}
+
+        lead_cov = covered(lines[0])
+        kept = [lines[0]] + [ln for ln in lines[1:]
+                             if ln[1] == lines[0][1] or lead_cov <= covered(ln)]
+        union = set().union(*(covered(ln) for ln in kept))
+        return kept if len(union) / len(concepts) >= MIN_COVERAGE else []
 
 
 if __name__ == "__main__":
