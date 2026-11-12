@@ -59,6 +59,42 @@ class CorrectnessTests(unittest.TestCase):
                 self.assertTrue(any('§18.3' in s for s in ans.sources))
                 self.assertFalse(any('Dean' in s for s in ans.sources))
 
+    def test_working_while_studying_is_clarified(self):
+        for q in ['Studying while working part time', 'Can I study while holding a job?',
+                  'I work full time, can I still do the master?', 'Can I do the master while working?']:
+            for p in ['MAI_CONV', None]:     # also without a selected programme
+                with self.subTest(question=q, programme=p):
+                    ans = self.bot.ask(q, programme=p)
+                    self.assertEqual(ans.status, 'clarify')
+                    self.assertIn('part-time study options', ans.text)
+                    self.assertEqual(ans.sources, [])
+
+    def test_explicit_part_time_questions_are_not_clarified(self):
+        ans = self.bot.ask('How long will it take if I study while working?', programme='MAI_CONV')
+        self.assertEqual(ans.status, 'answer')
+        self.assertIn('2–5 years part time', ans.text)
+        self.assertIn('Assuming part-time study', ans.text)
+        self.assertEqual(self.bot.ask('How long will it take if I study while working?', programme=None).lead,
+                         'Which programme do you mean?')
+        ans = self.bot.ask('Can I study part time?', programme='MAI_CONV')
+        self.assertEqual(ans.status, 'answer')
+        self.assertIn('minimum 2 years, maximum 5 years', ans.text)
+        self.assertTrue(any('Part Time' in s for s in ans.sources))
+        self.assertEqual(self.bot.ask('Can I study part time?', programme=None).lead, 'Which programme do you mean?')
+        ans = self.bot.ask('When are the part-time classes?', programme='MAI_CONV')
+        self.assertEqual(ans.status, 'not_found')
+        self.assertIn('does not give a class timetable', ans.text)
+        self.assertNotIn('tables below', ans.text)
+
+    def test_job_wording_alone_does_not_trigger_study_clarification(self):
+        for q in ['What jobs can I get after graduation?', 'What career opportunities are there after the AI master?',
+                  'Can I work while studying?']:
+            with self.subTest(question=q):
+                self.assertNotEqual(self.bot.ask(q, programme='MAI_CONV').intent, 'work_study')
+        # Changing status is not a request about part-time availability (the held-out miss stays as it was).
+        self.assertNotEqual(self.bot.ask('Can I switch from full time to part time?', programme='MDS').intent,
+                            'part_time_option')
+
     def test_table_row_answers_still_supported(self):
         ans = self.bot.ask('Which lecturer supervises chatbot projects?')
         self.assertEqual(ans.status, 'answer')

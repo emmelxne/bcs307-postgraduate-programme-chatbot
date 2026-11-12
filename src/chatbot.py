@@ -58,6 +58,32 @@ MODULE_ALIASES = {
 # answer on its own: the referenced rows are not part of the displayed evidence.
 DANGLING_REF = re.compile(r"\b(?:tables?|figures?|lists?|rows?|following|details|summar\w+)\b[^.;:]{0,60}\b(?:below|above)\b"
                           r"|\b(?:below|above)\b[^.;]{0,30}\b(?:tables?|figures?|list)\b", re.I)
+# Studying while employed. "part time" in such a question may describe the job, not the study mode.
+WORK_CUE = re.compile(
+    r"\bwhile (?:i(?:'m| am)? )?(?:working|employed|holding a job|having a job|have a job|at work)\b"
+    r"|\b(?:holding|having|have|with|got) (?:a |my )?(?:full[- ]?time |part[- ]?time )?job\b"
+    r"|\bwork(?:ing)? and (?:study\w*|do(?:ing)? (?:the|a|my))"
+    r"|\bstud\w* (?:and|while|alongside|along with) (?:work\w*|a (?:full[- ]?time |part[- ]?time )?job)\b"
+    r"|\bworking (?:adults?|professionals?)\b|\bi (?:work|am working|am employed)\b|\bi'?m (?:working|employed)\b"
+    r"|\bfull[- ]?time (?:job|work|employee|employment)\b|\b(?:my|current) (?:job|employer)\b")
+AFTER_GRADUATION = re.compile(r"\b(?:after|upon) (?:graduat\w*|completing|finishing|the (?:master|programme|program|degree)|"
+                              r"i graduate|my (?:master|degree))|\bcareers?\b|\bopportunit")
+SCHEDULE_ASK = re.compile(r"\b(?:when|what (?:time|days?)|which days?)\b[^?]*\b(?:classes|class|lectures?)\b"
+                          r"|\bclass(?:es)? (?:schedule|timetable|times?|days?)\b|\btimetables?\b|\bschedule of classes\b"
+                          r"|\b(?:weekday|weekend|evening|night) (?:classes|lectures)\b")
+PART_TIME_ASK = re.compile(r"\b(?:can|could|may) i (?:study|do|take|enrol+|join|apply)\b[^?]*\bpart[- ]?time\b"
+                           r"|\bpart[- ]?time (?:study|studies|option|options|mode|programme|program|available|allowed|offered)\b"
+                           r"|\bis (?:there|it) (?:a |any )?part[- ]?time\b|\b(?:study|studying) part[- ]?time\b")
+STATUS_CHANGE = re.compile(r"\b(?:switch\w*|chang\w*|convert\w*|transfer\w*)\b")
+
+
+def working_while_studying(ql: str) -> bool:
+    """Employment is part of a study question. 'Can I work while studying?' asks about
+    permission to work, which is a different (unanswered) question, so it is excluded."""
+    return (bool(WORK_CUE.search(ql)) and not AFTER_GRADUATION.search(ql)
+            and not re.search(r"\bwork(?:ing)? (?:while|during)\b", ql))
+
+
 # Words that make a short "what is X?" a handbook question rather than general knowledge
 HANDBOOK_TERMS = (r"programme|program|module|subject|course|credit|fee|grade|gpa|cgpa|muet|ielts|cefr|odl|"
                   r"mypride|lrc|issd|apel|helplive|dissertation|project report|thesis|viva|supervisor|"
@@ -180,7 +206,7 @@ class Chatbot:
             ans.programme = prog
             return ans
         programme_specific = intent in {"overview", "duration", "credits", "module_credits", "module_lookup", "subjects", "electives", "module_semester",
-                                        "admission", "internship", "hours"}
+                                        "admission", "internship", "hours", "class_schedule", "part_time_option"}
         if programme_specific and len(scope) != 1:
             choices = sorted(scope) if scope else list(PROGRAMMES)
             return Answer("clarify", "Which programme do you mean?", intent=intent,
@@ -321,6 +347,12 @@ class Chatbot:
             return "admission"
         if self._module_codes(ql):
             return "module_lookup"
+        if SCHEDULE_ASK.search(ql):
+            return "class_schedule"
+        if working_while_studying(ql):
+            return "work_study"
+        if PART_TIME_ASK.search(ql) and not STATUS_CHANGE.search(ql):
+            return "part_time_option"
         return "general"
 
     def _requested_fact(self, ql):
@@ -405,8 +437,45 @@ class Chatbot:
         parts = [f"{rows[l][0][0]}–{rows[l][0][1]} years {l}" for l in loads]
         details = [f"{l.capitalize()}: minimum {rows[l][0][0]} years, maximum {rows[l][0][1]} years"
                    .replace("minimum 1 years", "minimum 1 year") for l in loads]
+        if loads == ["part time"] and working_while_studying(ql) and not re.search(r"part[- ]?time", ql):
+            details.append("Assuming part-time study, since you mentioned working."
+                           + (f" Full-time study takes {rows['full time'][0][0]}–{rows['full time'][0][1]} years."
+                              if "full time" in rows else ""))
         return Answer("answer", f"The **{PROGRAMMES[prog]}** takes " + " or ".join(parts) + ".",
                       details, [cite(rows[l][1]) for l in loads], intent="duration")
+
+    def _h_work_study(self, q, ql, prog, scope):
+        """Studying while employed, with no clear request: ask what is needed instead of guessing."""
+        return Answer("clarify", "Are you asking about part-time study options, programme duration, or class schedules?",
+                      intent="work_study",
+                      options=[{"label": l, "action": "ask", "value": v} for l, v in [
+                          ("Part-time study options", "Can I study part time?"),
+                          ("Programme duration", "How long does part-time study take?"),
+                          ("Class schedules", "When are the part-time classes?")]])
+
+    def _h_part_time_option(self, q, ql, prog, scope):
+        """Is a part-time route listed? Answered from the part-time structure tables only."""
+        for c in self._chunks(prog, "structure", "part time"):
+            yr = years_range(" ".join(c["units"]))
+            if yr:
+                return Answer("answer", f"The handbook lists a part-time route for the **{PROGRAMMES[prog]}**: "
+                                        f"minimum {yr[0]} years, maximum {yr[1]} years.", [], [cite(c["section"])],
+                              intent="part_time_option")
+        return Answer("not_found", f"The handbook does not list a part-time route for the {PROGRAMMES[prog]}.",
+                      intent="part_time_option")
+
+    def _h_class_schedule(self, q, ql, prog, scope):
+        """Class days/times, only if the handbook states them for this programme."""
+        pat = re.compile(r"class(?:es)? (?:schedule|timetable)|(?:weekday|weekend|evening|night) (?:classes|lectures)|"
+                         r"(?:classes|lectures) (?:are|will be) (?:held|scheduled)", re.I)
+        found = [(u, c["section"]) for c in self.r.chunks if not c["programmes"] or prog in c["programmes"]
+                 for u in c["units"] if pat.search(u)]
+        if found:
+            return Answer("answer", found[0][0], [u for u, _ in found[1:]],
+                          list(dict.fromkeys(cite(s) for _, s in found)), intent="class_schedule")
+        return Answer("not_found", f"The handbook does not give a class timetable (days or times) for the "
+                                   f"{PROGRAMMES[prog]}. For class schedules, please contact {CONTACT}.",
+                      intent="class_schedule")
 
     @staticmethod
     def _module_codes(text):
