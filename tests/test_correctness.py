@@ -95,6 +95,36 @@ class CorrectnessTests(unittest.TestCase):
         self.assertNotEqual(self.bot.ask('Can I switch from full time to part time?', programme='MDS').intent,
                             'part_time_option')
 
+    def test_informal_duration_questions_route_to_duration(self):
+        for q in ['how many years is the masters for', 'what is duration of the masters.', 'how many years',
+                  'how many years.', 'how many years?', 'How many years does this degree take?', 'how long is it for']:
+            with self.subTest(question=q):
+                ans = self.bot.ask(q, programme='MDS')
+                self.assertEqual(ans.status, 'answer')
+                self.assertEqual(ans.intent, 'duration')
+                self.assertIn('1–3 years full time or 2–5 years part time', ans.text)
+                self.assertTrue(any('§5.2' in s for s in ans.sources))
+
+    def test_informal_duration_without_programme_asks_then_answers_original(self):
+        q = 'how many years is the masters for'
+        ans = self.bot.ask(q, programme=None)
+        self.assertEqual(ans.lead, 'Which programme do you mean?')
+        opt = next(o for o in ans.options if o['value'] == 'MDS')
+        follow = self.bot.ask(opt.get('question', q), programme=opt['value'])   # as app.on_option does
+        self.assertEqual(follow.status, 'answer')
+        self.assertIn('1–3 years full time or 2–5 years part time', follow.text)
+
+    def test_other_durations_and_fragments_are_not_programme_duration(self):
+        self.assertEqual(self.bot.ask('What do u do for', programme='MDS').status, 'clarify')
+        self.assertEqual(self.bot.ask('what is the', programme='MDS').status, 'clarify')
+        self.assertEqual(self.bot.ask('What is photosynthesis?', programme='MDS').status, 'not_found')
+        for q in ['How long is the train journey from Pasar Seni to HELP?', 'How many years of work experience do I need?',
+                  'How many years of work experience do I need for the masters?', 'how long is the NLP module']:
+            with self.subTest(question=q):
+                ans = self.bot.ask(q, programme='MDS')
+                self.assertEqual(ans.status, 'not_found')
+                self.assertNotIn('years full time', ans.text)
+
     def test_table_row_answers_still_supported(self):
         ans = self.bot.ask('Which lecturer supervises chatbot projects?')
         self.assertEqual(ans.status, 'answer')

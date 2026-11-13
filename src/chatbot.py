@@ -164,11 +164,15 @@ class Chatbot:
 
     def _ask(self, question: str, programme: str | None, keep_programme: bool) -> Answer:
         q = question.strip()
-        ql = fix_typos(q)
+        # Match on a copy without terminal punctuation so "how many years" / "...years." /
+        # "...years?" route identically. q keeps the original wording for display.
+        ql = re.sub(r"[\s?.!]+$", "", fix_typos(q))
 
         early = self._conversation_checks(q, ql)
         if early:
             return early
+        if ql.endswith(" for") and self._intent(ql[:-4]) == "duration":
+            ql = ql[:-4]                          # conversational filler: "how long is it for"
 
         # ---------------- programme resolution ----------------
         named = detect_in_query(q)
@@ -233,7 +237,10 @@ class Chatbot:
             return Answer("meta", f"Hello! Ask me about the FCDT postgraduate programmes — for example {EXAMPLES}.",
                           options=self._starters())
         dangling = re.search(r"\b(for|the|a|an|of|to|in|and|or|on|with|my|is|what|how|which)\s*[?.!]*$", ql)
-        if dangling or ql.rstrip().endswith("...") or len(words) < 2:
+        if dangling and dangling.group(1) == "for":
+            # "how many years is the masters for": complete once the filler "for" is dropped
+            dangling = self._intent(re.sub(r"\s+for$", "", ql)) != "duration"
+        if dangling or q.rstrip().endswith("...") or len(words) < 2:
             return Answer("clarify", "Could you finish your question? I can help with FCDT postgraduate "
                                      f"programmes — for example {EXAMPLES}.", options=self._starters())
         if re.search(r"what (can|do) (you|u) do|how (can|do) (you|u) help|what is this (bot|app|chatbot)", ql):
@@ -259,7 +266,7 @@ class Chatbot:
                          r"(?:define|explain|meaning of) (?:an? )?([a-z0-9 .\-']{1,30}?)\s*\??", ql)
         if m:
             topic = (m.group(1) or m.group(2) or "").strip()
-            if not topic.startswith("the ") and not re.search(HANDBOOK_TERMS, topic):
+            if not topic.startswith("the ") and not re.search(HANDBOOK_TERMS + r"|\b(?:duration|length)\b", topic):
                 related = self._related_definition(topic)
                 if related:
                     return related
@@ -418,6 +425,9 @@ class Chatbot:
                                                    "What are the entry requirements?"]])
 
     def _h_duration(self, q, ql, prog, scope):
+        if re.search(r"experience|years? of (?:work|working|service|practice)|\bage\b|\bold\b", ql):
+            return Answer("not_found", "Information not available: the handbook does not state the requested duration. "
+                          "The programme's study duration does not establish that fact.", intent="duration")
         programme_context = re.search(r"programme|program|master|phd|degree|stud(?:y|ying|ies)|working|"
                                       r"full[- ]?time|part[- ]?time|finish|complete", ql)
         bare_duration = re.fullmatch(r"(?:how long (?:is it|does it take|will it take)|"
